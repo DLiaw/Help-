@@ -8,7 +8,7 @@ Help! is a business review application based on Yelp!. Users can view reviews/im
 2. Reviews (Create, Read, Update, Delete)
 
 # Future Features
-  Search bar
+  Search bar,
   Google map
  
 
