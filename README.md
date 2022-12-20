@@ -1,4 +1,4 @@
-# Help!-
+# Yelp clone - Help!
 
 
 # Yelp! clone
