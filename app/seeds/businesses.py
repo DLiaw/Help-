@@ -668,4 +668,12 @@ Sun
     db.session.add(name14)
     db.session.commit()
 
+def undo_seed_business():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.business RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM business")
+
+    db.session.commit()
+
 ##Mon-11:00AM-9:00PM,Tue-11:00AM-9:00PM,Wed-11:00AM-9:00PM,Thu-11:00AM-9:00PM,Fri11:00AM-10:00PM,Sat-11:00AM-10:00PM,Sun-11:00AM-10:00PM
