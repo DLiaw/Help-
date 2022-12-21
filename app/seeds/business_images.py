@@ -530,7 +530,7 @@ def seed_business_image():
     db.session.add(name105)
     db.session.commit()
 
-def undo_business_image():
+def undo_seed_business_image():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.business_images RESTART IDENTITY CASCADE;")
     else:

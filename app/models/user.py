@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # Relations
-    businesses = db.Relations("Business",back_populates="users",cascade="all, delete")
-    reviews = db.Relations("Review",back_populates="users",cascade="all, delete")
+    businesses = db.relationship("Business",back_populates="users",cascade="all, delete")
+    reviews = db.relationship("Review",back_populates="users",cascade="all, delete")
 
     @property
     def password(self):

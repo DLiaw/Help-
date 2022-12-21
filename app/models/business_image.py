@@ -5,7 +5,7 @@ from datetime import datetime
 class BusinessImage(db.Model):
     __tablename__ = "business_images"
 
-    if environment == "production"
+    if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)

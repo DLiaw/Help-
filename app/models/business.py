@@ -17,7 +17,7 @@ class Business(db.Model):
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
     name = db.Column(db.String(255))
-    description = db.Column(db.String(2500),nullable=False)
+    description = db.Column(db.String(2500))
     price = db.Column(db.Integer,nullable=False)
     phone_number = db.Column(db.String(15),nullable=False)
     business_type = db.Column(db.String(25),nullable=False)
@@ -27,9 +27,9 @@ class Business(db.Model):
     updated_at = db.Column(db.DateTime, server_default=db.func.now(),server_onupdate=db.func.now())
 
     # Relations
-    users = db.relationship("User",back_populates="business")
-    business_images = db.relationship("BusinessImages", back_populates="business", cascade="all, delete")
-    business_reviews = db.relationship("BusinessReviews", back_populates="business", cascade="all, delete")
+    users = db.relationship("User",back_populates="businesses")
+    business_images = db.relationship("BusinessImage", back_populates="business", cascade="all, delete")
+    reviews = db.relationship("Review", back_populates="business", cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -48,7 +48,7 @@ class Business(db.Model):
             "phone_number": self.phone_number,
             "business_type": self.business_type,
             "business_hour": self.business_hour,
-            "site": self.site
-            "create_at": self.create_at,
+            "site": self.site,
+            "created_at": self.created_at,
             "updated_at": self.updated_at
         }

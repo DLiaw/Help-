@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .review import seed_review, undo_review
+from .reviews import seed_review, undo_seed_review
 from .review_images import seed_review_image, undo_seed_review_images
 from .businesses import seed_business, undo_seed_business
 from .business_images import seed_business_image, undo_seed_business_image
