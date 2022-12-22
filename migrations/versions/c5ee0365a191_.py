@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2106a56856e7
+Revision ID: c5ee0365a191
 Revises: 
-Create Date: 2022-12-21 04:07:16.896455
+Create Date: 2022-12-21 22:51:26.586858
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2106a56856e7'
+revision = 'c5ee0365a191'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -55,6 +55,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('business_id', sa.Integer(), nullable=False),
     sa.Column('business_image', sa.String(length=500), nullable=False),
+    sa.Column('preview', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['business_id'], ['business.id'], ),
@@ -76,6 +77,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review_id', sa.Integer(), nullable=False),
     sa.Column('review_image', sa.String(length=500), nullable=False),
+    sa.Column('preview', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.ForeignKeyConstraint(['review_id'], ['reviews.id'], ),

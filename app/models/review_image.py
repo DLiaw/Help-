@@ -11,6 +11,7 @@ class ReviewImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     review_id = db.Column(db.Integer, db.ForeignKey('reviews.id'), nullable=False)
     review_image = db.Column(db.String(500),nullable=False)
+    preview = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(),server_onupdate=db.func.now())
 
@@ -22,6 +23,7 @@ class ReviewImage(db.Model):
             'id': self.id,
             'review_id': self.review_id,
             'review_image': self.review_image,
+            'preview': self.preview,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -12,7 +12,7 @@ class Business(db.Model):
     address = db.Column(db.String(255),nullable=False)
     city = db.Column(db.String(25),nullable=False)
     state = db.Column(db.String(25),nullable=False)
-    country = db.Column(db.String(25),nullable=False)
+    country = db.Column(db.String(25),nullable=True)
     zip = db.Column(db.String(10),nullable=False)
     lat = db.Column(db.Float)
     lng = db.Column(db.Float)
@@ -50,5 +50,8 @@ class Business(db.Model):
             "business_hour": self.business_hour,
             "site": self.site,
             "created_at": self.created_at,
-            "updated_at": self.updated_at
+            "updated_at": self.updated_at,
+            "user": self.users.to_dict(),
+            "reviews": self.reviews.to_dict(),
+            "images": [image.to_dict()for images in self.business_images]
         }

@@ -6,17 +6,17 @@ def seed_users():
     demo = User(
         username='Demo',first_name='Demoo',last_name='Lee', email='demo@gmail.com', password='password')
     user1 = User(
-        username='Nhut',first_name='Nhutt',last_name='Lee', email='Nhut@gmail.com', password='password')
+        username='Nhut',first_name='Nhut',last_name='Lee', email='Nhut@gmail.com', password='password')
     user2 = User(
-        username='Curtis',first_name='Curtiss',last_name='Lee', email='Curtis@gmail.com', password='password')
+        username='Curtis',first_name='Curtis',last_name='Lee', email='Curtis@gmail.com', password='password')
     user3 = User(
-        username='Dylan',first_name='Dylann',last_name='Lee', email='Dylan@gmail.com', password='password')
+        username='Dylan',first_name='Dylan',last_name='Lee', email='Dylan@gmail.com', password='password')
     user4 = User(
-        username='Jarod',first_name='Jarodd',last_name='Lee', email='Jarod@gmail.com', password='password')
+        username='Jarod',first_name='Jarod',last_name='Lee', email='Jarod@gmail.com', password='password')
     user5 = User(
-        username='Sam',first_name='Samm',last_name='Lee', email='sam@gmail.com', password='password')
+        username='Sam',first_name='Sam',last_name='Lee', email='sam@gmail.com', password='password')
     user6 = User(
-        username='Lingling',first_name='LingLingg',last_name='Lee', email='Lingling@gmail.com', password='password')
+        username='Lingling',first_name='LingLing',last_name='Lee', email='Lingling@gmail.com', password='password')
 
     db.session.add(demo)
     db.session.add(user1)

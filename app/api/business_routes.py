@@ -1,0 +1,117 @@
+from flask import Flask, jsonify, Blueprint, redirect, request
+from ..models import db, User, Review, Business, ReviewImage, BusinessImage
+from ..forms import BusinessForm, BusinessImageForm, ReviewForm, ReviewImageForm, SignUpForm, LoginForm
+from flask_login import login_required, current_user
+review_routes = Blueprint("businesses", __name__)
+
+
+## Get all businesses
+@business_routes.route('/',methods=['GET'])
+def get_all_business():
+    businesses = Business.query.all()
+    return {'businesses': [business.to_dict() for business in businesses]}
+
+
+## Create a business
+@business_routes.route('/',methods=['POST'])
+@login_required
+def create_business():
+    form = BusinessForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_business = Business(
+            owner_id = form.data['owner_id'],
+            address = form.data['address'],
+            city = form.data['city'],
+            state = form.data['state'],
+            zip = form.data['zip'],
+            name = form.data['name'],
+            price = form.data['price'],
+            phone_number = form.data['phone_number'],
+            business_type = form.data['business_type'],
+            business_hour = form.data['business_hour'],
+            site = form.data['site']
+        )
+        db.session.add(new_business)
+        db.session.comit()
+        return new_business.to_dict()
+    return "Invalid data", 401
+
+## Update business by id
+@business_routes.route('/<int:id>',methods=['POST'])
+@login_required
+def create_business():
+    updated_business = Business.query.get(id)
+    form = BusinessForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        setattr(updated_business,'address', form.data['address'])
+        setattr(updated_business,'city', form.data['city'])
+        setattr(updated_business,'state', form.data['state'])
+        setattr(updated_business,'zip', form.data['zip'])
+        setattr(updated_business,'name', form.data['name'])
+        setattr(updated_business,'price', form.data['price'])
+        setattr(updated_business,'phone_number', form.data['phone_number'])
+        setattr(updated_business,'business_type', form.data['business_type'])
+        setattr(updated_business,'business_hour', form.data['business_hour'])
+        setattr(updated_business,'site', form.data['site'])
+    if form.errors:
+        return "Invalid Data"
+      db.session.commit()
+    res = review.to_dict()
+    return res
+
+## Get business by id
+@business_routes.route('/<int:id>',methods=['GET'])
+def business_by_id(id):
+    business = Business.query.get(id)
+    return business.to_dict()
+
+## Delete a business
+@business_routes.route('/<int:id>',methods=['DELETE'])
+@login_required
+def delete_business(id):
+    business = Business.query.get(id)
+    form['csrf_token'].data = request.cookies['csrf_token']
+    db.session.delete(business)
+    db.session.commit()
+    return "Successfully deleted."
+
+## Create review for business
+@business_routes.route('/<int:id>',methods=['POST'])
+@login_required
+def review_business(id):
+    user = current_user.id
+    business = Business.query.get(id)
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if not business:
+        return "Business not found"
+    if business:
+        if validate_on_submit():
+            review = Review(
+                user_id = user,
+                business_id = business.id,
+                review = form.data['review'],
+                stars = form.data['stars']
+            )
+            db.session.add(review)
+            db.session.commit()
+            return review.to_dict()
+        return "Invalid data."
+
+## Add image for business
+@business_routes.route('/<int:id>/images',methods=['POST'])
+@login_required
+def business_image(id):
+    form = BusinessImageForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        image = BusinessImageForm(
+            business_id = form.data['business_id'],
+            business_image = form.data['business_image'],
+            preview = form.data['preview']
+        )
+        db.session.add(image)
+        db.session.commit()
+        return image.to_dict()
