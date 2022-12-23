@@ -2,7 +2,7 @@ from flask import Flask, jsonify, Blueprint, redirect, request
 from ..models import db, User, Review, Business, ReviewImage, BusinessImage
 from ..forms import BusinessForm, BusinessImageForm, ReviewForm, ReviewImageForm, SignUpForm, LoginForm
 from flask_login import login_required, current_user
-review_routes = Blueprint("businesses", __name__)
+business_routes = Blueprint("business", __name__)
 
 
 ## Get all businesses
@@ -13,7 +13,7 @@ def get_all_business():
 
 
 ## Create a business
-@business_routes.route('/',methods=['POST'])
+@business_routes.route('/new',methods=['POST'])
 @login_required
 def create_business():
     form = BusinessForm()
@@ -29,7 +29,14 @@ def create_business():
             price = form.data['price'],
             phone_number = form.data['phone_number'],
             business_type = form.data['business_type'],
-            business_hour = form.data['business_hour'],
+            business_mon = form.data['business_mon'],
+            business_tue = form.data['business_tue'],
+            business_wed = form.data['business_wed'],
+            business_thu = form.data['business_thu'],
+            business_fri = form.data['business_fri'],
+            business_sat = form.data['business_sat'],
+            business_sun = form.data['business_sun'],
+            # business_hour = form.data['business_hour'],
             site = form.data['site']
         )
         db.session.add(new_business)
@@ -40,7 +47,7 @@ def create_business():
 ## Update business by id
 @business_routes.route('/<int:id>',methods=['POST'])
 @login_required
-def create_business():
+def update_business():
     updated_business = Business.query.get(id)
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -53,13 +60,22 @@ def create_business():
         setattr(updated_business,'price', form.data['price'])
         setattr(updated_business,'phone_number', form.data['phone_number'])
         setattr(updated_business,'business_type', form.data['business_type'])
-        setattr(updated_business,'business_hour', form.data['business_hour'])
+        # setattr(updated_business,'business_day', form.data['business_day'])
+        # setattr(updated_business,'business_hour_open', form.data['business_hour'])
+        # setattr(updated_business,'business_hour_close', form.data['business_hour'])
+        setattr(updated_business,'business_mon', form.data['business_mon'])
+        setattr(updated_business,'business_tue', form.data['business_tue'])
+        setattr(updated_business,'business_wed', form.data['business_wed'])
+        setattr(updated_business,'business_thu', form.data['business_thu'])
+        setattr(updated_business,'business_fri', form.data['business_fri'])
+        setattr(updated_business,'business_sat', form.data['business_sat'])
+        setattr(updated_business,'business_sun', form.data['business_sun'])
         setattr(updated_business,'site', form.data['site'])
+        db.session.commit()
+        res = review.to_dict()
+        return res
     if form.errors:
         return "Invalid Data"
-      db.session.commit()
-    res = review.to_dict()
-    return res
 
 ## Get business by id
 @business_routes.route('/<int:id>',methods=['GET'])

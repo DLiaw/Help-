@@ -2,11 +2,25 @@ import { NavLink } from "react-router-dom";
 
 const SingleReview = ({ review }) => {
     return (
-        <div>
-            {/* {review.first_name}{review.last_name} */}
-            {/* {<NavLink>{review.business.name}</NavLink>} */}
-            {/* {<img alt={'review.id'}>review.review_images[0]</img>} */}
-            {review.review}
+        <div className="singleReviewCard">
+            <div>
+                {review.user.first_name}&nbsp;&nbsp;{review.user.last_name.slice(0, 1).toUpperCase()}. <p>Wrote a review</p>
+            </div>
+            <div className="one">
+                <img className="singleReviewCardImg" alt="review-image" src={review.images[0]?.review_image}></img>
+            </div>
+            <div>
+                <NavLink to={`/businesses/${review.business.id}`}>{review.business.name}</NavLink>
+            </div>
+            <div>
+                stars go here
+            </div>
+            <div>
+                {review.review}
+            </div>
+            <div>
+                <NavLink to={`/businesses/${review.business.id}`} >Continue Reading...</NavLink>
+            </div>
         </div>
     )
 }

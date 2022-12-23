@@ -30,6 +30,6 @@ class Review(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'user': self.users.to_dict(),
-            'business': self.business.to_dict(),
+            'business': self.business.to_dict_review(),
             'images': [image.to_dict() for image in self.review_images]
         }

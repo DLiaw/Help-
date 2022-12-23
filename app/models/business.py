@@ -31,6 +31,31 @@ class Business(db.Model):
     business_images = db.relationship("BusinessImage", back_populates="business", cascade="all, delete")
     reviews = db.relationship("Review", back_populates="business", cascade="all, delete")
 
+    def to_dict_review(self):
+        return {
+            "id": self.id,
+            "owner_id": self.owner_id,
+            "address": self.address,
+            "city": self.city,
+            "state": self.state,
+            "country": self.country,
+            "zip": self.zip,
+            "lat": self.lat,
+            "lng": self.lng,
+            "name": self.name,
+            "description": self.description,
+            "price": self.price,
+            "phone_number": self.phone_number,
+            "business_type": self.business_type,
+            "business_day": self.business_day,
+            "business_hour_open": self.business_hour_open,
+            "business_hour_close": self.business_hour_close,
+            "site": self.site,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+            "user": self.users.to_dict()
+        }
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -47,11 +72,13 @@ class Business(db.Model):
             "price": self.price,
             "phone_number": self.phone_number,
             "business_type": self.business_type,
-            "business_hour": self.business_hour,
+            "business_day": self.business_day,
+            "business_hour_open": self.business_hour_open,
+            "business_hour_close": self.business_hour_close,
             "site": self.site,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
             "user": self.users.to_dict(),
-            "reviews": self.reviews.to_dict(),
-            "images": [image.to_dict()for images in self.business_images]
+            "reviews": [review.to_dict() for review in self.reviews],
+            "images": [image.to_dict() for images in self.business_images]
         }

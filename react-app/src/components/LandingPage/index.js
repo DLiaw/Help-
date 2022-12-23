@@ -16,10 +16,12 @@ const LandingPage = () => {
     }, [dispatch])
 
     return (
-        <div>
-            {allReview.map(review => (
-                <SingleReview key={review.id} review={review} />
-            ))}
+        <div className='single-card-flex'>
+            <div className='single-card-grid'>
+                {allReview.map(review => (
+                    <SingleReview key={review.id} review={review} />
+                ))}
+            </div>
         </div>
     )
 }

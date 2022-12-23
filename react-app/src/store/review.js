@@ -18,9 +18,8 @@ const allReviews = reviews => {
 export const getAllReviews = () => async dispatch => {
     const response = await fetch("/api/reviews")
     if (response.ok) {
-        const reviews = await response.json()
-        console.log(reviews, 'FROM THUNK')
-        dispatch(allReviews(reviews.reviews))
+        const data = await response.json()
+        dispatch(allReviews(data.reviews))
     }
 }
 
@@ -32,7 +31,6 @@ export default function reviewReducer(state = oldState, action) {
     switch (action.type) {
         case GET_ALL_REVIEWS: {
             let review = action.reviews
-            console.log(review, 'COMING FROM REDUCER')
             review.forEach(e =>
                 newState.allReviews[e.id] = e
             )
