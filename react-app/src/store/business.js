@@ -2,7 +2,7 @@
 
 const GET_ALL_BUSINESS = '/business/GET_ALL_BUSINESS'
 const NEW_BUSINESS = '/business/NEW_BUSINESS'
-
+const ONE_BUSINESS = '/business/ONE_BUSINESS'
 
 // Business actions
 
@@ -16,6 +16,13 @@ const allBusiness = business => {
 const newBusiness = business => {
     return {
         type: NEW_BUSINESS,
+        business
+    }
+}
+
+const oneBusiness = business => {
+    return {
+        type: ONE_BUSINESS,
         business
     }
 }
@@ -38,6 +45,7 @@ export const createNewBusiness = (business) => async dispatch => {
     })
     if (response.ok) {
         const data = await response.json()
+        dispatch(newBusiness(data))
         return data
     } else if (response.status < 500) {
         const data = await response.json()
@@ -45,9 +53,18 @@ export const createNewBusiness = (business) => async dispatch => {
     }
 }
 
+export const getOneBusiness = (business) => async dispatch => {
+
+    const response = await fetch(`/api/business/${business}`)
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(oneBusiness(data))
+    }
+}
+
 // Business reducers
 
-const oldState = { allBusiness: {} }
+const oldState = { allBusiness: {}, oneBusiness: {} }
 export default function businessReducer(state = oldState, action) {
     const newState = { ...state }
     switch (action.type) {
@@ -56,6 +73,10 @@ export default function businessReducer(state = oldState, action) {
                 newState.businesses[e.id] = e
             })
             return newState
+        }
+        case ONE_BUSINESS: {
+            newState.oneBusiness = action.business
+            return newState;
         }
         default:
             return oldState

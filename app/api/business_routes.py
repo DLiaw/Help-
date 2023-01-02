@@ -2,7 +2,9 @@ from flask import Flask, jsonify, Blueprint, redirect, request
 from ..models import db, User, Review, Business, ReviewImage, BusinessImage
 from ..forms import BusinessForm, BusinessImageForm, ReviewForm, ReviewImageForm, SignUpForm, LoginForm
 from flask_login import login_required, current_user
+from app.api.auth_routes import validation_errors_to_error_messages
 business_routes = Blueprint("business", __name__)
+
 
 
 ## Get all businesses
@@ -29,20 +31,26 @@ def create_business():
             price = form.data['price'],
             phone_number = form.data['phone_number'],
             business_type = form.data['business_type'],
-            business_mon = form.data['business_mon'],
-            business_tue = form.data['business_tue'],
-            business_wed = form.data['business_wed'],
-            business_thu = form.data['business_thu'],
-            business_fri = form.data['business_fri'],
-            business_sat = form.data['business_sat'],
-            business_sun = form.data['business_sun'],
-            # business_hour = form.data['business_hour'],
+            monOpen = form.data['monOpen'],
+            tueOpen = form.data['tueOpen'],
+            wedOpen = form.data['wedOpen'],
+            thuOpen = form.data['thuOpen'],
+            friOpen = form.data['friOpen'],
+            satOpen = form.data['satOpen'],
+            sunOpen = form.data['sunOpen'],
+            monClose = form.data['monClose'],
+            tueClose = form.data['tueClose'],
+            wedClose = form.data['wedClose'],
+            thuClose = form.data['thuClose'],
+            friClose = form.data['friClose'],
+            satClose = form.data['satClose'],
+            sunClose = form.data['sunClose'],
             site = form.data['site']
         )
         db.session.add(new_business)
-        db.session.comit()
+        db.session.commit()
         return new_business.to_dict()
-    return "Invalid data", 401
+    return {"errors": form.errors}, 401
 
 ## Update business by id
 @business_routes.route('/<int:id>',methods=['POST'])
@@ -60,16 +68,20 @@ def update_business():
         setattr(updated_business,'price', form.data['price'])
         setattr(updated_business,'phone_number', form.data['phone_number'])
         setattr(updated_business,'business_type', form.data['business_type'])
-        # setattr(updated_business,'business_day', form.data['business_day'])
-        # setattr(updated_business,'business_hour_open', form.data['business_hour'])
-        # setattr(updated_business,'business_hour_close', form.data['business_hour'])
-        setattr(updated_business,'business_mon', form.data['business_mon'])
-        setattr(updated_business,'business_tue', form.data['business_tue'])
-        setattr(updated_business,'business_wed', form.data['business_wed'])
-        setattr(updated_business,'business_thu', form.data['business_thu'])
-        setattr(updated_business,'business_fri', form.data['business_fri'])
-        setattr(updated_business,'business_sat', form.data['business_sat'])
-        setattr(updated_business,'business_sun', form.data['business_sun'])
+        setattr(updated_business,'monOpen', form.data['monOpen'])
+        setattr(updated_business,'tueOpen', form.data['tueOpen'])
+        setattr(updated_business,'wedOpen', form.data['wedOpen'])
+        setattr(updated_business,'thuOpen', form.data['thuOpen'])
+        setattr(updated_business,'friOpen', form.data['friOpen'])
+        setattr(updated_business,'satOpen', form.data['satOpen'])
+        setattr(updated_business,'sunOpen', form.data['sunOpen'])
+        setattr(updated_business,'monClose', form.data['monClose'])
+        setattr(updated_business,'tueClose', form.data['tueClose'])
+        setattr(updated_business,'wedClose', form.data['wedClose'])
+        setattr(updated_business,'thuClose', form.data['thuClose'])
+        setattr(updated_business,'friClose', form.data['friClose'])
+        setattr(updated_business,'satClose', form.data['satClose'])
+        setattr(updated_business,'sunClose', form.data['sunClose'])
         setattr(updated_business,'site', form.data['site'])
         db.session.commit()
         res = review.to_dict()

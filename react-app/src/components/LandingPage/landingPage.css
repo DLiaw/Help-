@@ -1,7 +1,20 @@
 .single-card-flex {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-right: 445px;
+}
+
+.title-h1 {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.title {
+    margin-left: 470px;
 }
 
 .single-card-grid {
@@ -12,13 +25,13 @@
     column-gap: 2ch;
     width: 300px;
     height: 400px;
-    border-color: 4px solid red;
-    z-index: 1;
 }
 
 .singleReviewCard {
     width: 250px;
     height: 350px;
+    overflow: hidden;
+    border-bottom: grey;
 }
 
 .singleReviewCardImg {
@@ -29,4 +42,30 @@
 
 .one {
     object-fit: scale-down;
+}
+
+.review-div {
+    overflow: hidden;
+    height: 55px;
+    color: grey;
+}
+
+.user-icon-name {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+.business-name {
+    height: 30px;
+}
+
+.business-nav {
+    font-size: 18px;
+    color: rgb(83, 83, 83);
+}
+
+.stars-div {
+    margin-bottom: 5px;
 }

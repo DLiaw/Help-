@@ -1,0 +1,24 @@
+.red-navbar {
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    margin: 0px;
+    background-color: rgba(211, 35, 35, 255);
+}
+
+.red-nav {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    cursor: pointer;
+}
+
+.help {
+    color: white;
+    padding-top: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}

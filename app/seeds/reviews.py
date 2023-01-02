@@ -29,7 +29,7 @@ def seed_review():
         stars = 5
     )
     review4 = Review(
-        user_id = '2',
+        user_id = '3',
         business_id = '2',
         review = '''Pretty good boba here, I definitely should've got one of their speciality drinks! The ordering system is nice and the drinks came out moderately fast.
          The drink itself was good, not too sweet and they give you a lot of boba which is nice! ''',
@@ -42,7 +42,7 @@ def seed_review():
         stars = 5
     )
     review6 = Review(
-        user_id = '2',
+        user_id = '4',
         business_id = '2',
         review = ''' I happened to see this place after stopping by HMart. Their menu options look very similar to Sunright but with more
         flavor options. I decided to try the cheese foam black tea grape slush. It has slightly less grape flavor than Sunright's version

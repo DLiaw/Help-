@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { createNewBusiness } from '../../store/business';
 
 const hours = [
@@ -80,6 +80,7 @@ const EditBusinessForm = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Name"
+                        required
                     ></input>
                 </div>
                 <div>
@@ -87,6 +88,7 @@ const EditBusinessForm = () => {
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
                         placeholder="Address"
+                        required
                     ></input>
                 </div>
                 <div>
@@ -94,6 +96,7 @@ const EditBusinessForm = () => {
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
                         placeholder="City"
+                        required
                     ></input>
                 </div>
                 <div>
@@ -108,6 +111,7 @@ const EditBusinessForm = () => {
                         value={zip}
                         onChange={(e) => setZip(e.target.value)}
                         placeholder="Zip code"
+                        required
                     ></input>
                 </div>
                 <div>
@@ -122,6 +126,7 @@ const EditBusinessForm = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Phone number"
+                        required
                     ></input>
                 </div>
                 <div>
@@ -129,6 +134,7 @@ const EditBusinessForm = () => {
                         value={type}
                         onChange={(e) => setType(e.target.value)}
                         placeholder="Business type"
+                        required
                     ></input>
                 </div>
                 <div>

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c5ee0365a191
+Revision ID: 565738821380
 Revises: 
-Create Date: 2022-12-21 22:51:26.586858
+Create Date: 2023-01-01 16:15:49.756376
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c5ee0365a191'
+revision = '565738821380'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,7 +35,7 @@ def upgrade():
     sa.Column('address', sa.String(length=255), nullable=False),
     sa.Column('city', sa.String(length=25), nullable=False),
     sa.Column('state', sa.String(length=25), nullable=False),
-    sa.Column('country', sa.String(length=25), nullable=False),
+    sa.Column('country', sa.String(length=25), nullable=True),
     sa.Column('zip', sa.String(length=10), nullable=False),
     sa.Column('lat', sa.Float(), nullable=True),
     sa.Column('lng', sa.Float(), nullable=True),
@@ -44,7 +44,20 @@ def upgrade():
     sa.Column('price', sa.Integer(), nullable=False),
     sa.Column('phone_number', sa.String(length=15), nullable=False),
     sa.Column('business_type', sa.String(length=25), nullable=False),
-    sa.Column('business_hour', sa.String(length=50), nullable=False),
+    sa.Column('monOpen', sa.String(length=50), nullable=False),
+    sa.Column('tueOpen', sa.String(length=50), nullable=False),
+    sa.Column('wedOpen', sa.String(length=50), nullable=False),
+    sa.Column('thuOpen', sa.String(length=50), nullable=False),
+    sa.Column('friOpen', sa.String(length=50), nullable=False),
+    sa.Column('satOpen', sa.String(length=50), nullable=False),
+    sa.Column('sunOpen', sa.String(length=50), nullable=False),
+    sa.Column('monClose', sa.String(length=50), nullable=False),
+    sa.Column('tueClose', sa.String(length=50), nullable=False),
+    sa.Column('wedClose', sa.String(length=50), nullable=False),
+    sa.Column('thuClose', sa.String(length=50), nullable=False),
+    sa.Column('friClose', sa.String(length=50), nullable=False),
+    sa.Column('satClose', sa.String(length=50), nullable=False),
+    sa.Column('sunClose', sa.String(length=50), nullable=False),
     sa.Column('site', sa.String(length=100), nullable=True),
     sa.Column('created_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),

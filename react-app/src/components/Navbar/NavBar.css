@@ -1,0 +1,87 @@
+.navbar-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+    height: 50vh;
+    width: 100vw;
+}
+
+.navbar-div {
+    background-image: url('https://t3.ftcdn.net/jpg/03/08/45/12/240_F_308451255_PoYDBX9MHxCJdYsQBTQ0yFodRNVuYrpo.jpg'),
+        url('https://t3.ftcdn.net/jpg/03/83/35/44/240_F_383354473_MgbvbwdScppSJR7Npme8pF9OruAUIBxU.jpg'),
+        url('http://ww2.hdnux.com/photos/51/47/71/10911357/5/1024x1024.jpg'),
+        url('https://assets0.dostuffmedia.com/uploads/aws_asset/aws_asset/1886983/0ae7ef5f-3ee5-42e3-868d-3bd0ecfc2897.png'),
+        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9R-YOIo7CyBhGOs2qHh3d_vFt3meN2hWj8Q&usqp=CAU'),
+        url('https://i.ytimg.com/vi/wBNkT_0cbmE/maxresdefault.jpg'),
+        url('https://cloudfront-us-east-1.images.arcpublishing.com/advancelocal/IDH774NL6NGGDPMDQPBVMQEA6Q.JPG');
+    /* background-position: right bottom, left top; */
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.login-signup {
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+}
+
+#help {
+    color: red;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+}
+
+.login-signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login {
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+
+}
+
+.login-div {
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-top: 6px;
+    align-items: center;
+    justify-content: space-around;
+    height: 25px;
+    width: 50px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.sign-up {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+}
+
+.signup-div {
+    margin-top: 5px;
+    padding-left: 8px;
+    padding-top: 8px;
+    align-items: center;
+    justify-content: space-around;
+    height: 27px;
+    width: 60px;
+    background-color: red;
+    border: none;
+    border-radius: 4px;
+}
+
+.profile-button {
+    cursor: pointer;
+}
