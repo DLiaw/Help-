@@ -6,4 +6,4 @@ from app.models import Review
 ## Review form
 class ReviewForm(FlaskForm):
     review = TextAreaField("review",validators=[DataRequired(),Length(min=1,max=2500,message="Limit on reviews are 2500 characters.")])
-    stars = IntegerField("stars",validators=[DataRequired(),Length(min=1,max=5,message="Star ratings must be between 1-5.")])
+    stars = IntegerField("stars",validators=[DataRequired()])

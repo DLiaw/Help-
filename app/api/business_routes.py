@@ -53,9 +53,9 @@ def create_business():
     return {"errors": form.errors}, 401
 
 ## Update business by id
-@business_routes.route('/<int:id>',methods=['POST'])
+@business_routes.route('/<int:id>',methods=['PUT'])
 @login_required
-def update_business():
+def update_business(id):
     updated_business = Business.query.get(id)
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -84,7 +84,7 @@ def update_business():
         setattr(updated_business,'sunClose', form.data['sunClose'])
         setattr(updated_business,'site', form.data['site'])
         db.session.commit()
-        res = review.to_dict()
+        res = updated_business.to_dict()
         return res
     if form.errors:
         return "Invalid Data"
@@ -100,13 +100,12 @@ def business_by_id(id):
 @login_required
 def delete_business(id):
     business = Business.query.get(id)
-    form['csrf_token'].data = request.cookies['csrf_token']
     db.session.delete(business)
     db.session.commit()
     return "Successfully deleted."
 
 ## Create review for business
-@business_routes.route('/<int:id>',methods=['POST'])
+@business_routes.route('/<int:id>/reviews',methods=['POST'])
 @login_required
 def review_business(id):
     user = current_user.id
@@ -116,7 +115,7 @@ def review_business(id):
     if not business:
         return "Business not found"
     if business:
-        if validate_on_submit():
+        if form.validate_on_submit():
             review = Review(
                 user_id = user,
                 business_id = business.id,
@@ -126,7 +125,8 @@ def review_business(id):
             db.session.add(review)
             db.session.commit()
             return review.to_dict()
-        return "Invalid data."
+        if form.errors:
+            return "Invalid data."
 
 ## Add image for business
 @business_routes.route('/<int:id>/images',methods=['POST'])

@@ -11,37 +11,37 @@ def seed_review_image():
 {
    'review_id': 4,
    'preview': True,
-   'review_image': "htts://s3-media0.fl.yelpcdn.com/bphoto/FcHKksQcR9kpwMBUmtzSrA/o.jpg"
+   'review_image': "https://s3-media0.fl.yelpcdn.com/bphoto/FcHKksQcR9kpwMBUmtzSrA/o.jpg"
 },
 
 {
    'review_id': 4,
    'preview': True,
-   'review_image': "htts://s3-media0.fl.yelpcdn.com/bphoto/iKZp_Da158pANEXtpRGyiw/o.jpg"
+   'review_image': "https://s3-media0.fl.yelpcdn.com/bphoto/iKZp_Da158pANEXtpRGyiw/o.jpg"
 },
 
 {
    'review_id': 4,
    'preview': True,
-   'review_image': "htts://s3-media0.fl.yelpcdn.com/bphoto/W_ep0hHniRvAbmXUgChJvA/o.jpg"
+   'review_image': "https://s3-media0.fl.yelpcdn.com/bphoto/W_ep0hHniRvAbmXUgChJvA/o.jpg"
 },
 
 {
    'review_id': 4,
    'preview': True,
-   'review_image': "htts://s3-media0.fl.yelpcdn.com/bphoto/eAasVrFpdbCsGPFIMh7L-Q/o.jpg"
+   'review_image': "https://s3-media0.fl.yelpcdn.com/bphoto/eAasVrFpdbCsGPFIMh7L-Q/o.jpg"
 },
 
 {
    'review_id': 4,
    'preview': True,
-   'review_image': "htts://s3-media0.fl.yelpcdn.com/bphoto/FYex_vFz-XgQWxgdlvQZKA/o.jpg"
+   'review_image': "https://s3-media0.fl.yelpcdn.com/bphoto/FYex_vFz-XgQWxgdlvQZKA/o.jpg"
 },
 
 {
    'review_id': 4,
    'preview': True,
-   'review_image': "htts://s3-media0.fl.yelpcdn.com/bphoto/lyEBKRqi_OX_vAlcI9dsqg/o.jpg"
+   'review_image': "https://s3-media0.fl.yelpcdn.com/bphoto/lyEBKRqi_OX_vAlcI9dsqg/o.jpg"
 },
 
 {

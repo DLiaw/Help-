@@ -10,17 +10,12 @@ def all_reviews():
     reviews = Review.query.all()
     result = []
     return {'reviews': [review.to_dict() for review in reviews]}
-    # for review in reviews:
-    #     # key into join tables to_dict() if its one to many for in it
-    #     images = review.review_images
-    #     images_list = [image.to_dict() for image in images]
-    #     reviewer = review.users.to_dict()
-    #     review_data = review.to_dict()
-    #     review_data['images'] = images_list
-    #     review_data['user'] = reviewer
-    #     result.append(review_data)
-    # return jsonify({'reviews': result})
 
+## Get reviews by id
+@review_routes.route('/<int:id>',methods=['GET'])
+def one_review(id):
+    review = Review.query.get(id)
+    return {'review': review.to_dict()}
 
 ## Reviews by current user
 @review_routes.route('/my-reviews',methods=['GET'])
@@ -55,7 +50,6 @@ def update_review(review_id):
 @login_required
 def delete_review(review_id):
     review = Review.query.filter_by(id = review_id).first()
-    form['csrf_token'].data = request.cookies['csrf_token']
     db.session.delete(review)
     db.session.commit()
     return "Successfully deleted."

@@ -10,22 +10,23 @@ def seed_review():
         stars = 5
     )
     review2 = Review(
-        user_id = '6',
-        business_id = '1',
-        review = ''' We happened to walk by for their soft opening and decided to try it! They have some nice flavor combos and all the things we like about bubble tea.
-        I tried a mashed purple yam milk tea, could not customize sugar level but it wasn't too sweet! Also got 0% ice and they still filled it all the way up. I live
-        that it came in a cute panda cup and a no spill cap for the opening. Only a few small tables for seating so hard for groups to sit. They have kiosks to order
-        which makes the process faster! Didn't talk with servers much as they were super busy but seems rather efficient. Would go back to try a few more flavors and options.''',
+        user_id = '1',
+        business_id = '15',
+        review = ''' Truly one of the best boba milk teas I've tried. The inside is unassuming - kind of has grandma's house vibes so you can tell it's
+        a family run spot, not a chain. They have SO many flavors and ice cream too. Definitely will be back, I went on a rainy day pretty early and there
+        was no line, and the woman working was super nice. ''',
         stars = 4
     )
     review3 = Review(
-        user_id = '4',
-        business_id = '1',
-        review = ''' A friend showed me this place and it did not disappoint! He got a roasted milk tea that had really deep flavors and I got a mango/pomelo slush with
-        cheese foam which was super refreshing and was just the right amount of sweetness at 50%!
+        user_id = '2',
+        business_id = '14',
+        review = ''' Awesome service, really good tea, and multiple options for a good price. I love how it's a small business owned by a
+        family. I also love authentic the store and the back of the store is LOL...if you're Chinese, you'll know what I mean. @ Owners,
+        please never change.
 
-        There are a few tables to sit at but other than that, the place is pretty barren. They don't offer free wifi to customers, which is the only downside, so not a good study
-        spot. Would highly recommend for good bubble tea though! ''',
+        Highly recommend the heavy oolong tea with egg pudding!
+
+        ''',
         stars = 5
     )
     review4 = Review(
@@ -36,20 +37,18 @@ def seed_review():
         stars = 4
     )
     review5 = Review(
-        user_id = '6',
-        business_id = '2',
-        review = ''' Really good bubble tea spot at UW!! All fresh ingredients and great service :) highly recommend coming here to grab your drinks!! ''',
+        user_id = '2',
+        business_id = '13',
+        review = ''' Pink Lady (Rose, lychee, and lemon) for $5.25: it's really a rose-based tea with lychee bits and lemon slices. Perfect
+        refresher, not too sweet, and I added crystal boba for the perfect chew. Would recommend. ''',
         stars = 5
     )
     review6 = Review(
-        user_id = '4',
-        business_id = '2',
-        review = ''' I happened to see this place after stopping by HMart. Their menu options look very similar to Sunright but with more
-        flavor options. I decided to try the cheese foam black tea grape slush. It has slightly less grape flavor than Sunright's version
-        but still good. Cute decor with some seating, I'd definitely come back to try one of their other drinks especially in the late
-        evening when I'm looking for more options with no caffeine!
-
-        ''',
+        user_id = '3',
+        business_id = '12',
+        review = ''' One of the best drinks I've had and love the large cup size options! The unsweet tea smoothie is so yummy and I
+        love sugar but it was better than any sweet tea. The ice-cream is flavorful but not grossly artificial! Loved it and the
+        employees energy was so sweet, I left smiling. There is also lots of parking on the street so it's easy access! ''',
         stars = 4
     )
     review7 = Review(
@@ -61,24 +60,33 @@ def seed_review():
         stars = 5
     )
     review8 = Review(
-        user_id = '4',
-        business_id = '3',
-        review = ''' I was excited to try this new boba spot but it wasn't as good as I was expecting. With so many boba
-        options on the Ave, they did a good job drawing you into the location. The decor was simple and cute. It was a clean
-        spot with different table options. The present is all done via touchscreen. I got the milk tea at 50% sweet and the
-        drink itself was great. The boba balls itself were subpar. They were small disappointing balls and not full of much
-        flavor. The milk tea was good but not the boba. It was a bit pricey for the size too. I got the regular size and it
-        was $6.50. I would try out another spot before coming back here unfortunately. ''',
-        stars = 5
+        user_id = '5',
+        business_id = '11',
+        review = ''' Small unassuming tea shop in the I district area steps away from uwajimaya by the gate, this small tea
+        shop also sells boba. If you like that tea taste, this is the shop for you. Their tea drinks are always good. You can
+        adjust sweetness and ice level and the service is always above and beyond. Too sweet, they can help you with that.
+
+        One topping is free and their boba is definitely the best I've had in the area. ''',
+        stars = 4
     )
     review9 = Review(
-        user_id = '5',
-        business_id = '3',
-        review = ''' there are quite a lot of drinks you can choose from as well as a couple of the toppings. the taste isn't
-        great but honestly it's just "normal" boba. my only concern was although you are required to wear the plastic "gloves"
-        when making your drink, the toppings are in an open container and everyone scoops out of it, so it seems pretty unsanitary
-        but I would assume it's the only way it would work so yeah.. ''',
-        stars = 4
+        user_id = '1',
+        business_id = '10',
+        review = ''' Favorite bubble tea place in seattle!
+        You can actually taste the tea!!!
+
+        This has quickly become my favorite bubble tea shop in seattle. The service is amazing and the workers seem genuinely
+        happy to be there and interact with customers.
+
+        I've gotten the brown sugar milk tea (recommend 25-50 percent as it can be very sweet if higher) and the green tea
+        milk tea. My friend loves the jasmine tea and the mango black tea was definitely not bad at all. Usually not a fan
+        of Ice cream myself, but their oolong and jasmine ice cream is so good too! Not too sweet and the tea
+        flavor just really comes through.
+
+        We have been fortunate to find parking every time as there are spots designated for random pickup.
+
+        Will continue coming back for more for the random cravings! ''',
+        stars = 5
     )
     review10 = Review(
         user_id = '2',
@@ -313,23 +321,13 @@ def seed_review():
         stars = 4
     )
     review29 = Review(
-        user_id = '1',
-        business_id = '10',
-        review = ''' Favorite bubble tea place in seattle!
-        You can actually taste the tea!!!
-
-        This has quickly become my favorite bubble tea shop in seattle. The service is amazing and the workers seem genuinely
-        happy to be there and interact with customers.
-
-        I've gotten the brown sugar milk tea (recommend 25-50 percent as it can be very sweet if higher) and the green tea
-        milk tea. My friend loves the jasmine tea and the mango black tea was definitely not bad at all. Usually not a fan
-        of Ice cream myself, but their oolong and jasmine ice cream is so good too! Not too sweet and the tea
-        flavor just really comes through.
-
-        We have been fortunate to find parking every time as there are spots designated for random pickup.
-
-        Will continue coming back for more for the random cravings! ''',
-        stars = 5
+        user_id = '5',
+        business_id = '3',
+        review = ''' there are quite a lot of drinks you can choose from as well as a couple of the toppings. the taste isn't
+        great but honestly it's just "normal" boba. my only concern was although you are required to wear the plastic "gloves"
+        when making your drink, the toppings are in an open container and everyone scoops out of it, so it seems pretty unsanitary
+        but I would assume it's the only way it would work so yeah.. ''',
+        stars = 4
     )
     review30 = Review(
         user_id = '2',
@@ -361,14 +359,15 @@ def seed_review():
         stars = 5
     )
     review33 = Review(
-        user_id = '5',
-        business_id = '11',
-        review = ''' Small unassuming tea shop in the I district area steps away from uwajimaya by the gate, this small tea
-        shop also sells boba. If you like that tea taste, this is the shop for you. Their tea drinks are always good. You can
-        adjust sweetness and ice level and the service is always above and beyond. Too sweet, they can help you with that.
-
-        One topping is free and their boba is definitely the best I've had in the area. ''',
-        stars = 4
+        user_id = '4',
+        business_id = '3',
+        review = ''' I was excited to try this new boba spot but it wasn't as good as I was expecting. With so many boba
+        options on the Ave, they did a good job drawing you into the location. The decor was simple and cute. It was a clean
+        spot with different table options. The present is all done via touchscreen. I got the milk tea at 50% sweet and the
+        drink itself was great. The boba balls itself were subpar. They were small disappointing balls and not full of much
+        flavor. The milk tea was good but not the boba. It was a bit pricey for the size too. I got the regular size and it
+        was $6.50. I would try out another spot before coming back here unfortunately. ''',
+        stars = 5
     )
     review34 = Review(
         user_id = '2',
@@ -388,11 +387,14 @@ def seed_review():
         stars = 4
     )
     review36 = Review(
-        user_id = '3',
-        business_id = '12',
-        review = ''' One of the best drinks I've had and love the large cup size options! The unsweet tea smoothie is so yummy and I
-        love sugar but it was better than any sweet tea. The ice-cream is flavorful but not grossly artificial! Loved it and the
-        employees energy was so sweet, I left smiling. There is also lots of parking on the street so it's easy access! ''',
+        user_id = '4',
+        business_id = '2',
+        review = ''' I happened to see this place after stopping by HMart. Their menu options look very similar to Sunright but with more
+        flavor options. I decided to try the cheese foam black tea grape slush. It has slightly less grape flavor than Sunright's version
+        but still good. Cute decor with some seating, I'd definitely come back to try one of their other drinks especially in the late
+        evening when I'm looking for more options with no caffeine!
+
+        ''',
         stars = 4
     )
     review37 = Review(
@@ -412,10 +414,9 @@ def seed_review():
         stars = 4
     )
     review39 = Review(
-        user_id = '2',
-        business_id = '13',
-        review = ''' Pink Lady (Rose, lychee, and lemon) for $5.25: it's really a rose-based tea with lychee bits and lemon slices. Perfect
-        refresher, not too sweet, and I added crystal boba for the perfect chew. Would recommend. ''',
+        user_id = '6',
+        business_id = '2',
+        review = ''' Really good bubble tea spot at UW!! All fresh ingredients and great service :) highly recommend coming here to grab your drinks!! ''',
         stars = 5
     )
     review40 = Review(
@@ -436,15 +437,13 @@ def seed_review():
         stars = 4
     )
     review42 = Review(
-        user_id = '2',
-        business_id = '14',
-        review = ''' Awesome service, really good tea, and multiple options for a good price. I love how it's a small business owned by a
-        family. I also love authentic the store and the back of the store is LOL...if you're Chinese, you'll know what I mean. @ Owners,
-        please never change.
+        user_id = '4',
+        business_id = '1',
+        review = ''' A friend showed me this place and it did not disappoint! He got a roasted milk tea that had really deep flavors and I got a mango/pomelo slush with
+        cheese foam which was super refreshing and was just the right amount of sweetness at 50%!
 
-        Highly recommend the heavy oolong tea with egg pudding!
-
-        ''',
+        There are a few tables to sit at but other than that, the place is pretty barren. They don't offer free wifi to customers, which is the only downside, so not a good study
+        spot. Would highly recommend for good bubble tea though! ''',
         stars = 5
     )
     review43 = Review(
@@ -469,11 +468,12 @@ def seed_review():
         stars = 5
     )
     review45 = Review(
-        user_id = '1',
-        business_id = '15',
-        review = ''' Truly one of the best boba milk teas I've tried. The inside is unassuming - kind of has grandma's house vibes so you can tell it's
-        a family run spot, not a chain. They have SO many flavors and ice cream too. Definitely will be back, I went on a rainy day pretty early and there
-        was no line, and the woman working was super nice. ''',
+        user_id = '6',
+        business_id = '1',
+        review = ''' We happened to walk by for their soft opening and decided to try it! They have some nice flavor combos and all the things we like about bubble tea.
+        I tried a mashed purple yam milk tea, could not customize sugar level but it wasn't too sweet! Also got 0% ice and they still filled it all the way up. I live
+        that it came in a cute panda cup and a no spill cap for the opening. Only a few small tables for seating so hard for groups to sit. They have kiosks to order
+        which makes the process faster! Didn't talk with servers much as they were super busy but seems rather efficient. Would go back to try a few more flavors and options.''',
         stars = 4
     )
 
