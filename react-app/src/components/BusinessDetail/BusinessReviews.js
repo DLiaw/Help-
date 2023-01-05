@@ -1,20 +1,22 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useHistory } from "react-router-dom";
-import { deleteOldReview } from '../../store/review'
-import Stars from '../stars'
+import { NavLink, useParams } from "react-router-dom";
+import { deleteOldReview } from '../../store/review';
+import { getOneBusiness } from "../../store/business";
+import Stars from '../stars';
 
 const BusinessReviews = ({ singleReview }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const history = useHistory()
+    const { id } = useParams()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(deleteOldReview(singleReview.id))
-        history.push(`/business/${singleReview.business_id}`)
+        await dispatch(deleteOldReview(singleReview.id))
+            .then(dispatch(getOneBusiness(id)))
+
     }
     const rating = singleReview.stars
-
     if (!rating) return null;
     return (
         <div className="business-details">

@@ -85,6 +85,11 @@
 
 .profile-button {
     cursor: pointer;
+    position: relative;
+    font-size: 35px;
+    color: grey;
+    padding-top: 10px;
+
 }
 
 /* .navbar-gradient {

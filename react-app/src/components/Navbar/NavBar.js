@@ -69,18 +69,18 @@ const NavBar = () => {
               </NavLink>
             </div>
             <div className='login-signup'>
-              <div style={{ paddingTop: '10px' }}>
+              <div style={{ paddingTop: '22px' }}>
                 <NavLink to="/business/new" style={{ color: 'black', textDecoration: 'none' }}>For Business</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
-              <div style={{ paddingTop: '10px' }}>
+              <div style={{ paddingTop: '22px' }}>
                 <NavLink to='/business/2' style={{ color: 'black', textDecoration: 'none' }}>Write a Review</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
               <div className='profile-button' onClick={openMenu}>
-                <i style={{ fontSize: '35px', color: "grey" }} className="fa-solid fa-circle-user" />
-                {showMenu &&
-                  <LogoutButton />
-                }
+                <i className="fa-solid fa-circle-user" />
               </div>
+              {showMenu &&
+                <LogoutButton />
+              }
             </div>
           </nav>
         </div>

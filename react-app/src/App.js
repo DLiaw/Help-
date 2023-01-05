@@ -37,6 +37,7 @@ function App() {
         <Route path='/' exact={true}>
           <NavBar />
           <LandingPage />
+          <Footer />
         </Route>
         <Route path='/login' exact={true}>
           <RedNavBar />
@@ -51,15 +52,16 @@ function App() {
         <Route path='/business/new' exact={true}>
           <RedNavBar />
           <BusinessForm />
-          <Footer />
+
         </Route>
         <Route path='/business/:id/edit' exact={true}>
           <RedNavBar />
           <EditBusinessForm />
-          <Footer />
+
         </Route>
         <Route path='/business/:id' exact={true}>
           <BusinessDetail />
+
         </Route>
         <Route path='/business/:id/review' exact={true}>
           <RedNavBar />

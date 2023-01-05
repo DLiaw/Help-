@@ -1,7 +1,23 @@
 const GET_ALL_REVIEWS = '/review/GET_ALL_REVIEWS'
 const ONE_REVIEW = '/review/ONE_REVIEW'
 const CLEANUP_REVIEW = '/review/CLEANUP_REVIEW'
+const LOAD_BUSINESS_REVIEWS = '/review/LOAD_BUSINESS_REVIEWS'
+const DELETE_REVIEW = '/reivew/DELETE_REVIEW'
 // Review actions
+
+const businessReviews = reviews => {
+    return {
+        type: LOAD_BUSINESS_REVIEWS,
+        reviews
+    }
+}
+
+const deleteReview = id => {
+    return {
+        type: DELETE_REVIEW,
+        id
+    }
+}
 
 const allReviews = reviews => {
     return {
@@ -17,7 +33,7 @@ const oneReview = reviews => {
     }
 }
 
-export const cleaupReview = () => {
+export const cleanupReview = () => {
     return {
         type: CLEANUP_REVIEW
     }
@@ -41,6 +57,15 @@ export const newReview = (data) => async dispatch => {
     }
 }
 
+export const getBusinessReviews = (id) => async dispatch => {
+    const response = await fetch(`/api/reviews/business/${id}`)
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(allReviews(data.reviews))
+    }
+}
+
+
 export const getAllReviews = () => async dispatch => {
     const response = await fetch("/api/reviews")
     if (response.ok) {
@@ -61,6 +86,7 @@ export const deleteOldReview = (id) => async dispatch => {
     await fetch(`/api/reviews/${id}`, {
         method: 'DELETE'
     })
+    dispatch(deleteReview(id))
 }
 
 export const updateReview = (review) => async dispatch => {
@@ -86,9 +112,11 @@ export const updateReview = (review) => async dispatch => {
 
 const oldState = { allReviews: {}, oneReview: {} }
 export default function reviewReducer(state = oldState, action) {
-    const newState = { ...state }
+    const newState = { allReviews: {}, oneReview: {} }
     switch (action.type) {
         case GET_ALL_REVIEWS: {
+            newState.allReviews = {}
+            newState.oneReview = {}
             let data = action.reviews
             data.forEach(e =>
                 newState.allReviews[e.id] = e
@@ -102,6 +130,11 @@ export default function reviewReducer(state = oldState, action) {
         case CLEANUP_REVIEW: {
             newState.allReviews = {}
             newState.oneReview = {}
+            return newState
+        }
+        case DELETE_REVIEW: {
+            newState.allReviews = { ...state.allReviews }
+            delete newState.allReviews[action.id]
             return newState
         }
         default:

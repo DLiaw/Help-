@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { newReview } from '../../store/review';
 import { getOneBusiness } from '../../store/business';
+import { cleanupReview } from '../../store/review'
 import StarRating from './StarRating';
 import './NewReview.css'
 import image1 from './image1.png'
@@ -32,9 +33,10 @@ const CreateReview = () => {
         e.preventDefault()
         if (!error.length) {
             const data = {
-                review, stars, 'user_id': user.id, 'business_id': id
+                review, stars, 'user_id': user.id, 'business_id': business.id
             }
-            dispatch(newReview(data))
+            await dispatch(newReview(data))
+            // await dispatch(cleanupReview())
             history.push(`/business/${id}`)
         }
     }

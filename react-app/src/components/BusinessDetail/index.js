@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom';
 import { getOneBusiness } from '../../store/business';
+import { getBusinessReviews } from '../../store/review'
 import SingleBusiness from './SingleBusiness'
 import BusinessReviews from './BusinessReviews'
 import Navbar from './Nav.js'
@@ -13,8 +14,10 @@ const BusinessDetail = () => {
     const business = useSelector(state => state.business?.oneBusiness)
     const { id } = useParams();
     const dispatch = useDispatch()
+    const reviews = useSelector(state => Object.values(state.review?.allReviews))
 
     useEffect(() => {
+        dispatch(getBusinessReviews(id))
         dispatch(getOneBusiness(id)).then(() => setLoad(true))
     }, [dispatch])
     if (!Object.values(business).length) return null;
@@ -40,21 +43,19 @@ const BusinessDetail = () => {
             </div>
             <div className='review-business-info'>
                 <div className='user-reviews'>
-                    {business.reviews?.map(singleReview => (
+                    {reviews?.map(singleReview => (
                         <BusinessReviews key={singleReview.id} singleReview={singleReview} />
                     ))}
                 </div>
                 <div className='business-info'>
-                    <div>
-                        <NavLink to={business.site} className='business-info-site'>
-                            {business.site}<i class="fa-solid fa-location-arrow" />
-                        </NavLink>
+                    <div className='business-info-site' >
+                        <a style={{ textDecoration: 'none', color: 'grey' }} href={business.site}>
+                            {business.site}
+                        </a>
+                        <i class="fa-solid fa-location-arrow" />
                     </div>
                     <div className='business-info-phone'>
-                        {business.phone_number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;<i class="fa-solid fa-phone-volume" />
+                        {business.phone_number}<i class="fa-solid fa-phone-volume" />
                     </div>
                     <div className='business-info-address'>
                         <div className='business-info-address-detail'>

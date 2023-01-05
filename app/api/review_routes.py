@@ -17,6 +17,12 @@ def one_review(id):
     review = Review.query.get(id)
     return {'review': review.to_dict()}
 
+## Filter reviews by id
+@review_routes.route('/business/<int:id>',methods=['GET'])
+def business_review(id):
+    reviews = Review.query.filter_by(business_id = id).all()
+    return {'reviews': [review.to_dict() for review in reviews]}
+
 ## Reviews by current user
 @review_routes.route('/my-reviews',methods=['GET'])
 @login_required

@@ -97,41 +97,45 @@
     border: .5px solid rgb(186, 186, 186);
     border-radius: 3px;
     height: 180px;
-    margin-top: 3px;
+    margin-top: 23px;
+    padding: 10px;
+    margin-left: 10px;
 }
 
 .business-info-site {
     display: flex;
     justify-content: start;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     border-bottom: .5px solid rgb(186, 186, 186);
     color: grey;
-    height: 60px;
+    height: 65px;
     width: 325px;
-    text-decoration: none;
-
+    padding: 10px;
+    white-space: preline;
 }
 
 .business-info-address {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     color: grey;
-    height: 60px;
+    height: 65px;
     width: 325px;
     text-decoration: none;
+    padding: 10px;
 }
 
 .business-info-phone {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     color: grey;
-    height: 60px;
+    height: 65px;
     width: 325px;
     text-decoration: none;
     border-bottom: .5px solid rgb(186, 186, 186);
+    padding: 10px;
 }
 
 .business-review-images {

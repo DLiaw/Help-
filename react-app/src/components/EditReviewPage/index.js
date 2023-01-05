@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { updateReview } from '../../store/review';
-import { getOneReview, cleaupReview } from '../../store/review';
+import { getOneReview, cleanupReview } from '../../store/review';
 import StarRating from '../NewReviewPage/StarRating';
 import './EditReview.css'
 import image1 from './image1.png'
@@ -35,7 +35,7 @@ const EditReview = () => {
                 review, stars, 'user_id': user.id, 'review_id': businessReview.id
             }
             await dispatch(updateReview(data))
-            await dispatch(cleaupReview())
+            await dispatch(cleanupReview())
             history.push(`/business/${businessReview.business_id}`)
         }
     }
