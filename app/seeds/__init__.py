@@ -27,17 +27,17 @@ def seed():
     seed_users()
     seed_business()
     seed_review()
-    seed_business_image()
     seed_review_image()
+    seed_business_image()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_users()
-    undo_seed_business()
-    undo_seed_review()
     undo_seed_business_image()
     undo_seed_review_images()
+    undo_seed_review()
+    undo_seed_business()
+    undo_users()
     # Add other undo functions here
