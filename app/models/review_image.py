@@ -9,7 +9,7 @@ class ReviewImage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    review_id = db.Column(db.Integer, db.ForeignKey('reviews.id'), nullable=False)
+    review_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('reviews.id')), nullable=False)
     review_image = db.Column(db.String(500),nullable=False)
     preview = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())

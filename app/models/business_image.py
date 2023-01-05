@@ -9,7 +9,7 @@ class BusinessImage(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    business_id = db.Column(db.Integer, db.ForeignKey('business.id'), nullable=False)
+    business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('business.id')), nullable=False)
     business_image = db.Column(db.String(500),nullable=False)
     preview = db.Column(db.Boolean, nullable=False, default=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
