@@ -45,7 +45,7 @@ def upgrade():
     sa.Column('lng', sa.Float(), nullable=True),
     sa.Column('name', sa.String(length=255), nullable=True),
     sa.Column('description', sa.String(length=2500), nullable=True),
-    sa.Column('price', sa.Integer(), nullable=False),
+    sa.Column('price', sa.String(), nullable=False),
     sa.Column('phone_number', sa.String(length=15), nullable=False),
     sa.Column('business_type', sa.String(length=25), nullable=False),
     sa.Column('monOpen', sa.String(length=50), nullable=False),
