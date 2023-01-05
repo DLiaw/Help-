@@ -10,6 +10,8 @@ import BusinessForm from '../src/components/NewBusinessPage';
 import EditBusinessForm from './components/EditBusinessPage';
 import BusinessDetail from './components/BusinessDetail';
 import RedNavBar from './components/RedNavBar/RedNavBar';
+import CreateReview from '../src/components/NewReviewPage';
+import Footer from './components/Footer';
 import './index.css'
 
 function App() {
@@ -36,21 +38,32 @@ function App() {
           <LandingPage />
         </Route>
         <Route path='/login' exact={true}>
+          <RedNavBar />
           <LoginForm />
+          <Footer />
         </Route>
         <Route path='/sign-up' exact={true}>
+          <RedNavBar />
           <SignUpForm />
+          <Footer />
         </Route>
         <Route path='/business/new' exact={true}>
           <RedNavBar />
           <BusinessForm />
+          <Footer />
         </Route>
-        <Route path='/business/edit' exact={true}>
+        <Route path='/business/:id/edit' exact={true}>
           <RedNavBar />
           <EditBusinessForm />
+          <Footer />
         </Route>
         <Route path='/business/:id' exact={true}>
           <BusinessDetail />
+        </Route>
+        <Route path='/business/:id/review' exact={true}>
+          <RedNavBar />
+          <CreateReview />
+          <Footer />
         </Route>
       </Switch>
     </BrowserRouter>

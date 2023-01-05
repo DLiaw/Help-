@@ -1,9 +1,5 @@
-
-
 const GET_ALL_REVIEWS = '/review/GET_ALL_REVIEWS'
-
-
-
+const ONE_REVIEW = '/review/ONE_REVIEW'
 // Review actions
 
 const allReviews = reviews => {
@@ -13,7 +9,31 @@ const allReviews = reviews => {
     }
 }
 
+const oneReview = reviews => {
+    return {
+        type: ONE_REVIEW,
+        reviews
+    }
+}
+
 // Reviews thunks
+
+export const newReview = (data) => async dispatch => {
+    const response = await fetch(`/api/business/${data.business_id}/reviews`, {
+        method: "POST",
+        headers: {
+            "content-Type": 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    if (response.ok) {
+        const data = await response.json();
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json();
+        if (data.errors) return data
+    }
+}
 
 export const getAllReviews = () => async dispatch => {
     const response = await fetch("/api/reviews")
@@ -23,19 +43,54 @@ export const getAllReviews = () => async dispatch => {
     }
 }
 
+export const getOneReview = (id) => async dispatch => {
+    const response = await fetch(`/api/reviews/${id}`)
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(oneReview(data.review))
+    }
+}
+
+export const deleteOldReview = (id) => async dispatch => {
+    await fetch(`/api/reviews/${id}`, {
+        method: 'DELETE'
+    })
+}
+
+export const updateReview = (review) => async dispatch => {
+    const response = await fetch(`/review/${review}`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(review)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) return data
+    }
+}
 // Reviews reducers
 
-const oldState = { allReviews: {} }
+const oldState = { allReviews: {}, oneReview: {} }
 export default function reviewReducer(state = oldState, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_ALL_REVIEWS: {
-            let review = action.reviews
-            review.forEach(e =>
+            let data = action.reviews
+            data.forEach(e =>
                 newState.allReviews[e.id] = e
             )
             return newState
         }
-        default: return state
+        case ONE_REVIEW: {
+            newState.oneReview = action.reviews
+            return newState
+        }
+        default:
+            return state
     }
 }

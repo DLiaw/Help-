@@ -1,9 +1,7 @@
-
-
 const GET_ALL_BUSINESS = '/business/GET_ALL_BUSINESS'
 const NEW_BUSINESS = '/business/NEW_BUSINESS'
 const ONE_BUSINESS = '/business/ONE_BUSINESS'
-
+const EDIT_BUSINESS = '/business/EDIT_BUSINESS'
 // Business actions
 
 const allBusiness = business => {
@@ -53,6 +51,12 @@ export const createNewBusiness = (business) => async dispatch => {
     }
 }
 
+export const deleteOldBusiness = (id) => async dispatch => {
+    await fetch(`/api/business/${id}`, {
+        method: 'DELETE'
+    })
+}
+
 export const getOneBusiness = (business) => async dispatch => {
 
     const response = await fetch(`/api/business/${business}`)
@@ -62,6 +66,22 @@ export const getOneBusiness = (business) => async dispatch => {
     }
 }
 
+export const updateBusiness = (business) => async dispatch => {
+    const response = await fetch(`/api/business/${business.id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(business)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) return data
+    }
+}
 // Business reducers
 
 const oldState = { allBusiness: {}, oneBusiness: {} }

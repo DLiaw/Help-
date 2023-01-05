@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import './landingPage.css'
+import Stars from "../stars";
 const SingleReview = ({ review }) => {
-
+    const rating = review.stars
     return (
         <div className="singleReviewCard">
             <div>
@@ -20,8 +21,8 @@ const SingleReview = ({ review }) => {
             <div className="business-name">
                 <NavLink className="business-nav" to={`/business/${review.business.id}`}>{review.business.name}</NavLink>
             </div>
-            <div className="stars-div">
-                stars go here
+            <div style={{ width: '100px' }}>
+                <Stars key={review?.id} rating={rating} />
             </div>
             <div className="review-div">
                 {review.review}

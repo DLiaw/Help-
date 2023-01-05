@@ -13,15 +13,15 @@ const LandingPage = () => {
     useEffect(() => {
         dispatch(getAllReviews())
     }, [dispatch])
-    // if (!allReview) return null;
+
     let reviews = []
     if (allReview) {
-        allReview.slice(0, 6).map(review => (
+        allReview.slice(0, 9).map(review => (
             reviews.push(<SingleReview key={review.id} review={review} />)
         ))
     } else { reviews = (<>failed</>) }
     return (
-        <div className='single-card-flex'>
+        <div className='landing-main-div'>
             <div className='title'> <h1 className='title-h1'>Recent Activity</h1></div>
             <div className='single-card-grid'>
                 {reviews}

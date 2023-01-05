@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import * as sessionActions from '../../store/session'
-import { Redirect } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session'
 import image from './signup.png'
@@ -93,11 +92,15 @@ const SignUpForm = () => {
         <button className='signup-button' type='submit'>Sign Up</button>
         <div className='or-div'>&nbsp;&nbsp;OR&nbsp;&nbsp;</div>
         <button className="signup-button" onClick={handleDemo}>Demo User</button>
-      </form>
+        <div className='link-signup-bottom'>
+          <label>New to Help?</label>&nbsp;&nbsp;
+          <NavLink style={{ textDecoration: 'none', color: 'rgb(105, 105, 255)' }} to='/login'>Log in</NavLink>
+        </div>
+      </form >
       <div>
         <img alt='signup' src={image}></img>
       </div>
-    </div>
+    </div >
   );
 };
 

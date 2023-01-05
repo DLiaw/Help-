@@ -1,0 +1,77 @@
+.navbar-main-business-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    height: 60px;
+    /* border-bottom: .5px solid grey; */
+}
+
+.navbar-div-business-page {
+    background-color: white;
+}
+
+.login-signup-business-page {
+    display: flex;
+    flex-direction: row;
+    padding-right: 40px;
+}
+
+#help-business-page {
+    color: red;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: Helvetica, sans-serif;
+}
+
+.login-signup-business-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.login-business-page {
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+
+}
+
+.login-div-business-page {
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-top: 6px;
+    align-items: center;
+    justify-content: space-around;
+    height: 25px;
+    width: 50px;
+    border: 1px solid white;
+    border-radius: 4px;
+}
+
+.sign-up-business-page {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+    background-color: red;
+    color: white;
+}
+
+.signup-div-business-page {
+    margin-top: 5px;
+    padding-left: 8px;
+    padding-top: 8px;
+    align-items: center;
+    justify-content: space-around;
+    height: 27px;
+    width: 60px;
+    background-color: red;
+    border: none;
+    border-radius: 4px;
+}
+
+.profile-button-business-page {
+    cursor: pointer;
+}
