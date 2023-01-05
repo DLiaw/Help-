@@ -18,7 +18,7 @@ class Business(db.Model):
     lng = db.Column(db.Float)
     name = db.Column(db.String(255))
     description = db.Column(db.String(2500))
-    price = db.Column(db.Integer,nullable=False)
+    price = db.Column(db.String,nullable=False)
     phone_number = db.Column(db.String(15),nullable=False)
     business_type = db.Column(db.String(25),nullable=False)
     monOpen = db.Column(db.String(50),nullable=False)
