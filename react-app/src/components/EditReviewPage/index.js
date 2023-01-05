@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { newReview } from '../../store/review';
-import { getOneBusiness } from '../../store/business';
-import StarRating from './StarRating';
-import './NewReview.css'
+import { updateReview } from '../../store/review';
+import { getOneReview, cleaupReview } from '../../store/review';
+import StarRating from '../NewReviewPage/StarRating';
+import './EditReview.css'
 import image1 from './image1.png'
 import image2 from './image2.png'
 
-const CreateReview = () => {
+const EditReview = () => {
     const user = useSelector(state => state.session.user)
-    const business = useSelector(state => state.business?.oneBusiness)
+    const businessReview = useSelector(state => state.review?.oneReview)
     const dispatch = useDispatch()
     const history = useHistory()
     const [error, setError] = useState('')
@@ -25,20 +25,22 @@ const CreateReview = () => {
     }, [review])
 
     useEffect(() => {
-        dispatch(getOneBusiness(id))
+        dispatch(getOneReview(id))
     }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         if (!error.length) {
             const data = {
-                review, stars, 'user_id': user.id, 'business_id': id
+                review, stars, 'user_id': user.id, 'review_id': businessReview.id
             }
-            dispatch(newReview(data))
-            history.push(`/business/${id}`)
+            await dispatch(updateReview(data))
+            await dispatch(cleaupReview())
+            history.push(`/business/${businessReview.business_id}`)
         }
     }
 
+    if (!Object.values(businessReview).length) return null;
     return (
         <div className='create-review-main-div'>
             <div className='two-image-div'>
@@ -47,7 +49,7 @@ const CreateReview = () => {
             <div className='reviw-form-star'>
 
                 <div >
-                    <div style={{ fontSize: '30px', paddingBottom: '5px' }}>{business.name}</div>
+                    <div style={{ fontSize: '30px', paddingBottom: '5px' }}>{businessReview.business.name}</div>
                     <form onSubmit={handleSubmit}>
                         <label style={{ paddingRight: '200px', color: 'grey', fontSize: '20px' }}>Your thoughts here...</label>
                         <textarea
@@ -77,4 +79,4 @@ const CreateReview = () => {
     )
 }
 
-export default CreateReview;
+export default EditReview;

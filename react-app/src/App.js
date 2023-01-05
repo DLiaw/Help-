@@ -11,6 +11,7 @@ import EditBusinessForm from './components/EditBusinessPage';
 import BusinessDetail from './components/BusinessDetail';
 import RedNavBar from './components/RedNavBar/RedNavBar';
 import CreateReview from '../src/components/NewReviewPage';
+import EditReview from '../src/components/EditReviewPage'
 import Footer from './components/Footer';
 import './index.css'
 
@@ -63,6 +64,11 @@ function App() {
         <Route path='/business/:id/review' exact={true}>
           <RedNavBar />
           <CreateReview />
+          <Footer />
+        </Route>
+        <Route path='/business/:id/review/:id/edit' exact={true}>
+          <RedNavBar />
+          <EditReview />
           <Footer />
         </Route>
       </Switch>

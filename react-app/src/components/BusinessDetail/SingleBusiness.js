@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOldBusiness } from "../../store/business";
+import { deleteOldBusiness, cleanupBusiness } from "../../store/business";
 import { NavLink, useHistory } from "react-router-dom";
+import './businessDetail.css'
 import Stars from "../stars";
 
 const SingleBusiness = ({ business }) => {
@@ -12,6 +13,7 @@ const SingleBusiness = ({ business }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         dispatch(deleteOldBusiness(business.id))
+        dispatch(cleanupBusiness())
         history.push('/')
         history.go(0)
     }

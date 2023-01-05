@@ -1,5 +1,6 @@
 const GET_ALL_REVIEWS = '/review/GET_ALL_REVIEWS'
 const ONE_REVIEW = '/review/ONE_REVIEW'
+const CLEANUP_REVIEW = '/review/CLEANUP_REVIEW'
 // Review actions
 
 const allReviews = reviews => {
@@ -16,6 +17,11 @@ const oneReview = reviews => {
     }
 }
 
+export const cleaupReview = () => {
+    return {
+        type: CLEANUP_REVIEW
+    }
+}
 // Reviews thunks
 
 export const newReview = (data) => async dispatch => {
@@ -58,13 +64,14 @@ export const deleteOldReview = (id) => async dispatch => {
 }
 
 export const updateReview = (review) => async dispatch => {
-    const response = await fetch(`/review/${review}`, {
-        method: 'POST',
+    const response = await fetch(`/api/reviews/${review.review_id}`, {
+        method: 'PUT',
         headers: {
             'content-type': 'application/json'
         },
         body: JSON.stringify(review)
     })
+
     if (response.ok) {
         const data = await response.json()
         return data
@@ -73,6 +80,8 @@ export const updateReview = (review) => async dispatch => {
         if (data.errors) return data
     }
 }
+
+
 // Reviews reducers
 
 const oldState = { allReviews: {}, oneReview: {} }
@@ -88,6 +97,11 @@ export default function reviewReducer(state = oldState, action) {
         }
         case ONE_REVIEW: {
             newState.oneReview = action.reviews
+            return newState
+        }
+        case CLEANUP_REVIEW: {
+            newState.allReviews = {}
+            newState.oneReview = {}
             return newState
         }
         default:

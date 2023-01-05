@@ -1,7 +1,7 @@
 const GET_ALL_BUSINESS = '/business/GET_ALL_BUSINESS'
 const NEW_BUSINESS = '/business/NEW_BUSINESS'
 const ONE_BUSINESS = '/business/ONE_BUSINESS'
-const EDIT_BUSINESS = '/business/EDIT_BUSINESS'
+const CLEANUP_BUSINESS = '/business/CLEAN_BUSINESS'
 // Business actions
 
 const allBusiness = business => {
@@ -25,6 +25,11 @@ const oneBusiness = business => {
     }
 }
 
+export const cleanupBusiness = () => {
+    return {
+        type: CLEANUP_BUSINESS
+    }
+}
 // Business thunks
 
 export const getAllBusiness = () => async dispatch => {
@@ -97,6 +102,11 @@ export default function businessReducer(state = oldState, action) {
         case ONE_BUSINESS: {
             newState.oneBusiness = action.business
             return newState;
+        }
+        case CLEANUP_BUSINESS: {
+            newState.allBusiness = {}
+            newState.oneBusiness = {}
+            return newState
         }
         default:
             return oldState
