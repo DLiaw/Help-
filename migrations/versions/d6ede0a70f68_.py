@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 7540529dc674
+Revision ID: d6ede0a70f68
 Revises:
-Create Date: 2023-01-05 22:51:25.120991
+Create Date: 2023-01-07 21:13:34.822308
 
 """
 from alembic import op
@@ -10,8 +10,10 @@ import sqlalchemy as sa
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
+
+
 # revision identifiers, used by Alembic.
-revision = '7540529dc674'
+revision = 'd6ede0a70f68'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -109,6 +111,7 @@ def upgrade():
     )
     if environment == "production":
         op.execute(f"ALTER TABLE review_images SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 
