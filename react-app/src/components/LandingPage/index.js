@@ -10,8 +10,8 @@ const LandingPage = () => {
     const allReview = useSelector(state => Object.values(state.review.allReviews))
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getAllReviews())
+    useEffect(async () => {
+        await dispatch(getAllReviews())
     }, [dispatch])
 
     let reviews = []

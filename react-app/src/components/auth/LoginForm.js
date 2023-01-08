@@ -10,7 +10,6 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -50,11 +49,11 @@ const LoginForm = () => {
           </div>
         </div>
         <form className='login-form' onSubmit={onLogin}>
-          <div>
+          {/* <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
-          </div>
+          </div> */}
           <div>
             <input
               className='login-email-password'
@@ -63,7 +62,11 @@ const LoginForm = () => {
               placeholder='Email'
               value={email}
               onChange={updateEmail}
+              required
             />
+            {errors.email && (
+              <div className='errors'>{errors.email}</div>
+            )}
           </div>
           <div>
             <input
@@ -73,7 +76,11 @@ const LoginForm = () => {
               placeholder='Password'
               value={password}
               onChange={updatePassword}
+              required
             />
+            {errors.password && (
+              <div className='errors'>{errors.password}</div>
+            )}
             <div>
               <button className="login-button" type='submit'>Login</button>
             </div>

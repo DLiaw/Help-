@@ -12,8 +12,8 @@ const SingleBusiness = ({ business }) => {
     const history = useHistory()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        dispatch(deleteOldBusiness(business.id))
-        dispatch(cleanupBusiness())
+        await dispatch(deleteOldBusiness(business.id))
+        await dispatch(cleanupBusiness())
         history.push('/')
         history.go(0)
     }
@@ -23,6 +23,8 @@ const SingleBusiness = ({ business }) => {
         rating += e.stars
     })
     rating = rating / business.reviews.length
+
+    if (!Object.values(business).length) return null
 
     return (
         <div>
@@ -42,7 +44,7 @@ const SingleBusiness = ({ business }) => {
                 </div>
                 <div className="hours-edit-delete">
                     {business.monOpen}-{business.monClose}&nbsp;&nbsp;&nbsp;&nbsp;
-                    {user?.id == business.owner_id && user && <div>
+                    {user && user?.id === business?.owner_id && <div>
                         <button className="edit-delete-button" onClick={handleSubmit}>Delete</button>&nbsp;&nbsp;
                         <NavLink to={`/business/${business.id}/edit`}><button className="edit-delete-button" >Edit</button></NavLink>
                     </div>}

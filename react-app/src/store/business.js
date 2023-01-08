@@ -72,7 +72,7 @@ export const getOneBusiness = (business) => async dispatch => {
 }
 
 export const updateBusiness = (business) => async dispatch => {
-    const response = await fetch(`/api/business/${business.id}`, {
+    const response = await fetch(`/api/business/${business.id}/edit`, {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'

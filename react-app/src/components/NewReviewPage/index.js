@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { newReview } from '../../store/review';
 import { getOneBusiness } from '../../store/business';
-import { cleanupReview } from '../../store/review'
 import StarRating from './StarRating';
 import './NewReview.css'
 import image1 from './image1.png'
@@ -14,32 +13,30 @@ const CreateReview = () => {
     const business = useSelector(state => state.business?.oneBusiness)
     const dispatch = useDispatch()
     const history = useHistory()
-    const [error, setError] = useState('')
-    const [review, setReview] = useState('')
-    const [stars, setStars] = useState('0')
+    const [errors, setErrors] = useState({})
+    const [review, setReview] = useState()
+    const [stars, setStars] = useState()
     const { id } = useParams();
 
-    useEffect(() => {
-        const validations = []
-        if (review.length > 500) validations.push("Reviews must be less than 500 characters.")
-        setError(validations)
-    }, [review])
-
-    useEffect(() => {
-        dispatch(getOneBusiness(id))
+    useEffect(async () => {
+        await dispatch(getOneBusiness(id))
     }, [dispatch])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!error.length) {
-            const data = {
-                review, stars, 'user_id': user.id, 'business_id': business.id
-            }
-            await dispatch(newReview(data))
-            // await dispatch(cleanupReview())
+        const reviews = {
+            review, stars, 'user_id': user.id, 'business_id': business.id
+        }
+        const data = await dispatch(newReview(reviews))
+
+        if (data.errors) {
+            setErrors(data.errors)
+        } else {
             history.push(`/business/${id}`)
         }
     }
+
 
     return (
         <div className='create-review-main-div'>
@@ -60,6 +57,12 @@ const CreateReview = () => {
                             onChange={(e) => setReview(e.target.value)}
                             required />
                     </form>
+                    {errors.review && (
+                        <div className='errors'>{errors.review}</div>
+                    )}
+                    {errors.stars && (
+                        <div className='errors'>{errors.stars}</div>
+                    )}
                 </div>
 
                 <div className='review-star-div' >

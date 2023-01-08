@@ -9,8 +9,8 @@ import './auth.css'
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -18,12 +18,11 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const data = await dispatch(signUp(firstName, lastName, email, password));
+    const data = await dispatch(signUp(first_name, last_name, email, password));
     if (data) {
       setErrors(data)
     }
   }
-
 
   const handleDemo = (e) => {
     e.preventDefault()
@@ -39,11 +38,6 @@ const SignUpForm = () => {
     <div className='div-signup'>
       <form className='signup-form' onSubmit={onSignUp}>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
           <div className='signup-info'><p id='p1'>Sign Up for Help</p></div>
           <div className='signup-info'><p id='p2'>Connect with great local businesses</p></div>
           <div className='signup-info'><p id='p3'>By continuing, you agree to Help’s Terms of Service and acknowledge Help’s Privacy Policy.</p></div>
@@ -51,7 +45,7 @@ const SignUpForm = () => {
             <input id='fullname'
               type='text'
               name='firstname'
-              value={firstName}
+              value={first_name}
               onChange={(e) => setFirstName(e.target.value)}
               required
               placeholder='First Name'
@@ -61,11 +55,17 @@ const SignUpForm = () => {
               type='text'
               name='lastname'
               onChange={(e) => setLastName(e.target.value)}
-              value={lastName}
+              value={last_name}
               required
               placeholder='Last Name'
             ></input>
           </div>
+          {errors.first_name && (
+            <div className='errors'>{errors.first_name}</div>
+          )}
+          {errors.last_name && (
+            <div className='errors'>{errors.last_name}</div>
+          )}
         </div>
         <div>
           <input
@@ -77,6 +77,9 @@ const SignUpForm = () => {
             required
             placeholder='Email'
           ></input>
+          {errors.email && (
+            <div className='errors'>{errors.email}</div>
+          )}
         </div>
         <div>
           <input
@@ -88,6 +91,9 @@ const SignUpForm = () => {
             required
             placeholder='Password'
           ></input>
+          {errors.password && (
+            <div className='errors'>{errors.password}</div>
+          )}
         </div>
         <button className='signup-button' type='submit'>Sign Up</button>
         <div className='or-div'>&nbsp;&nbsp;OR&nbsp;&nbsp;</div>

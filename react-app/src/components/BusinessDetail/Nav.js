@@ -31,7 +31,7 @@ const Navbar = ({ business }) => {
             {!user && <div className='navbar-div-business-page'>
                 <nav className='navbar-main-business-page' >
                     <div>
-                        <NavLink to='/' style={{ display: 'flex', flexDirection: 'row', textDecoration: 'none' }} exact={true} activeClassName='active'>
+                        <NavLink to='/' style={{ paddingLeft: '10px', display: 'flex', flexDirection: 'row', textDecoration: 'none' }} exact={true} activeClassName='active'>
                             <img style={{ height: "50px", width: "50px", objectFit: "scale-down" }} alt='home-button' src='https://logos-world.net/wp-content/uploads/2020/12/Yelp-Logo-700x394.png'></img>
                             <p id='help-business-page'>Help!</p>
                         </NavLink>

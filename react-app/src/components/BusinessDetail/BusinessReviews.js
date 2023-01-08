@@ -13,11 +13,10 @@ const BusinessReviews = ({ singleReview }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(deleteOldReview(singleReview.id))
-            .then(dispatch(getOneBusiness(id)))
-
+        await dispatch(getOneBusiness(id))
     }
     const rating = singleReview.stars
-    if (!rating) return null;
+    // if (!rating) return null;
     return (
         <div className="business-details">
             <div className="business-review-div">
@@ -33,8 +32,9 @@ const BusinessReviews = ({ singleReview }) => {
                     {new Date(singleReview.created_at).toDateString()}
                 </div>
                 <div>
-                    {user.id == singleReview.user_id && user && <div>
+                    {user?.id === singleReview?.user_id && user && <div>
                         &nbsp;&nbsp;<button className="edit-delete-buttons" onClick={handleSubmit}>Delete</button>&nbsp;&nbsp;
+
                         <NavLink to={`/business/${singleReview.business_id}/review/${singleReview.id}/edit`}>
                             <button className="edit-delete-buttons">Edit</button>
                         </NavLink>

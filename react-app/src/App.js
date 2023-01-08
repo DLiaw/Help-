@@ -49,28 +49,25 @@ function App() {
           <SignUpForm />
           <Footer />
         </Route>
+        <Route path='/business/:businessId/review/:reviewId/edit' exact={true}>
+          <RedNavBar />
+          <EditReview />
+          <Footer />
+        </Route>
         <Route path='/business/new' exact={true}>
           <RedNavBar />
           <BusinessForm />
-
         </Route>
         <Route path='/business/:id/edit' exact={true}>
           <RedNavBar />
           <EditBusinessForm />
-
         </Route>
         <Route path='/business/:id' exact={true}>
           <BusinessDetail />
-
         </Route>
         <Route path='/business/:id/review' exact={true}>
           <RedNavBar />
           <CreateReview />
-          <Footer />
-        </Route>
-        <Route path='/business/:id/review/:id/edit' exact={true}>
-          <RedNavBar />
-          <EditReview />
           <Footer />
         </Route>
       </Switch>

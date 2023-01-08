@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { updateReview } from '../../store/review';
-import { getOneReview, cleanupReview } from '../../store/review';
+import { getOneReview } from '../../store/review';
+import { getOneBusiness } from '../../store/business';
 import StarRating from '../NewReviewPage/StarRating';
 import './EditReview.css'
 import image1 from './image1.png'
@@ -13,30 +14,28 @@ const EditReview = () => {
     const businessReview = useSelector(state => state.review?.oneReview)
     const dispatch = useDispatch()
     const history = useHistory()
-    const [error, setError] = useState('')
+    const [errors, setErrors] = useState({})
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState('0')
-    const { id } = useParams();
+    const [stars, setStars] = useState()
+    const { reviewId, businessId } = useParams();
 
-    useEffect(() => {
-        const validations = []
-        if (review.length > 500) validations.push("Reviews must be less than 500 characters.")
-        setError(validations)
-    }, [review])
-
-    useEffect(() => {
-        dispatch(getOneReview(id))
+    useEffect(async () => {
+        await dispatch(getOneReview(reviewId))
     }, [dispatch])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if (!error.length) {
-            const data = {
-                review, stars, 'user_id': user.id, 'review_id': businessReview.id
-            }
-            await dispatch(updateReview(data))
-            await dispatch(cleanupReview())
-            history.push(`/business/${businessReview.business_id}`)
+
+        const reviews = {
+            review, stars, 'user_id': user.id, 'review_id': businessReview.id
+        }
+        const data = await dispatch(updateReview(reviews))
+        await dispatch(getOneBusiness(businessId))
+
+        if (data.errors) {
+            setErrors(data.errors);
+        } else {
+            history.push(`/business/${businessId}`)
         }
     }
 
@@ -47,7 +46,6 @@ const EditReview = () => {
                 <img className='review-form-image1' alt='review-img1' src={image1}></img>
             </div>
             <div className='reviw-form-star'>
-
                 <div >
                     <div style={{ fontSize: '30px', paddingBottom: '5px' }}>{businessReview.business.name}</div>
                     <form onSubmit={handleSubmit}>
@@ -60,6 +58,12 @@ const EditReview = () => {
                             onChange={(e) => setReview(e.target.value)}
                             required />
                     </form>
+                    {errors.review && (
+                        <div className='errors'>{errors.review}</div>
+                    )}
+                    {errors.stars && (
+                        <div className='errors'>{errors.stars}</div>
+                    )}
                 </div>
 
                 <div className='review-star-div' >

@@ -42,10 +42,9 @@
 }
 
 .login {
-    background-color: transparent;
     color: white;
     text-decoration: none;
-
+    background-color: red;
 }
 
 .login-div {

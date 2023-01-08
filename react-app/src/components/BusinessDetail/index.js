@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getOneBusiness } from '../../store/business';
 import { getBusinessReviews } from '../../store/review'
 import SingleBusiness from './SingleBusiness'
@@ -15,19 +15,73 @@ const BusinessDetail = () => {
     const { id } = useParams();
     const dispatch = useDispatch()
     const reviews = useSelector(state => Object.values(state.review?.allReviews))
+    const [scrollX, setscrollX] = useState(0);
+    const [scrolEnd, setscrolEnd] = useState(false);
+    const scrl = useRef()
+
+
+    useEffect(async () => {
+        await dispatch(getBusinessReviews(id))
+        await dispatch(getOneBusiness(id))
+        setLoad(true)
+    }, [dispatch])
 
     useEffect(() => {
-        dispatch(getBusinessReviews(id))
-        dispatch(getOneBusiness(id)).then(() => setLoad(true))
-    }, [dispatch])
+
+        if (
+            scrl.current &&
+            scrl?.current?.scrollWidth === scrl?.current?.offsetWidth
+        ) {
+            setscrolEnd(true);
+        } else {
+            setscrolEnd(false);
+        }
+        return () => { };
+    }, [scrl?.current?.scrollWidth, scrl?.current?.offsetWidth]);
+
+    const slide = (shift) => {
+        scrl.current.scrollLeft += shift;
+        setscrollX(scrollX + shift);
+        if (
+            Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+            scrl.current.offsetWidth
+        ) {
+            setscrolEnd(true);
+        } else {
+            setscrolEnd(false);
+        }
+    };
+
+    const scrollCheck = () => {
+        setscrollX(scrl.current.scrollLeft);
+        if (
+            Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
+            scrl.current.offsetWidth
+        ) {
+            setscrolEnd(true);
+        } else {
+            setscrolEnd(false);
+        }
+    };
+
     if (!Object.values(business).length) return null;
     return load && (
 
         <div className='business-outer'>
             <Navbar business={business} />
-            <div className='business-images'>
-                <div className='business-gradient'></div>
-                <div className='business-solo-image'>
+            <div className='business-images business-snaps' ref={scrl} onScroll={scrollCheck}>
+                <div className='business-gradient'>
+
+                    <button className="prev scrollbtn" onClick={() => slide(-300)} >
+                        <i class="fa-solid fa-angles-left"></i>
+                    </button>
+
+
+                    <button className="next scrollbtn" onClick={() => slide(+300)}>
+                        <i class="fa-solid fa-angles-right"></i>
+                    </button>
+                </div>
+                <div className='business-solo-image' >
                     {business.images?.map(e => (
                         <img className='business-img' alt="business-logo" src={e.business_image}></img>
                     ))}
@@ -49,7 +103,7 @@ const BusinessDetail = () => {
                 </div>
                 <div className='business-info'>
                     <div className='business-info-site' >
-                        <a style={{ textDecoration: 'none', color: 'grey' }} href={business.site}>
+                        <a target="_blank" style={{ textDecoration: 'none', color: 'grey', wordBreak: 'break-all' }} href={business.site}>
                             {business.site}
                         </a>
                         <i class="fa-solid fa-location-arrow" />

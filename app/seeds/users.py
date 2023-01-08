@@ -4,19 +4,19 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo',first_name='Demoo',last_name='Lee', email='demo@gmail.com', password='password')
+        first_name='Demoo',last_name='Lee', email='demo@gmail.com', password='password')
     user1 = User(
-        username='Nhut',first_name='Nhut',last_name='Lee', email='Nhut@gmail.com', password='password')
+        first_name='Nhut',last_name='Lee', email='Nhut@gmail.com', password='password')
     user2 = User(
-        username='Curtis',first_name='Curtis',last_name='Lee', email='Curtis@gmail.com', password='password')
+        first_name='Curtis',last_name='Lee', email='Curtis@gmail.com', password='password')
     user3 = User(
-        username='Dylan',first_name='Dylan',last_name='Lee', email='Dylan@gmail.com', password='password')
+        first_name='Dylan',last_name='Lee', email='Dylan@gmail.com', password='password')
     user4 = User(
-        username='Jarod',first_name='Jarod',last_name='Lee', email='Jarod@gmail.com', password='password')
+        first_name='Jarod',last_name='Lee', email='Jarod@gmail.com', password='password')
     user5 = User(
-        username='Sam',first_name='Sam',last_name='Lee', email='sam@gmail.com', password='password')
+        first_name='Sam',last_name='Lee', email='sam@gmail.com', password='password')
     user6 = User(
-        username='Lingling',first_name='LingLing',last_name='Lee', email='Lingling@gmail.com', password='password')
+        first_name='LingLing',last_name='Lee', email='Lingling@gmail.com', password='password')
 
     db.session.add(demo)
     db.session.add(user1)

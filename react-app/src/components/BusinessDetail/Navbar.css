@@ -38,14 +38,14 @@
 }
 
 .login-div-business-page {
+    display: flex;
     margin-top: 5px;
-    padding-left: 10px;
-    padding-top: 6px;
     align-items: center;
-    justify-content: space-around;
-    height: 25px;
-    width: 50px;
-    border: 1px solid white;
+    justify-content: center;
+    height: 35px;
+    width: 69px;
+    background-color: red;
+    border: none;
     border-radius: 4px;
 }
 
@@ -75,3 +75,5 @@
 .profile-button-business-page {
     cursor: pointer;
 }
+
+.login {}

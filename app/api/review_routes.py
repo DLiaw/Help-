@@ -2,6 +2,7 @@ from flask import Flask, jsonify, Blueprint, redirect, request
 from ..models import db, User, Review, Business, ReviewImage, BusinessImage
 from ..forms import BusinessForm, BusinessImageForm, ReviewForm, ReviewImageForm, SignUpForm, LoginForm
 from flask_login import login_required, current_user
+from .auth_routes import validation_errors_to_error_messages
 review_routes = Blueprint("reviews", __name__)
 
 ## Get all reviews
@@ -45,7 +46,7 @@ def update_review(review_id):
         setattr(review,'review', form.data['review'])
         setattr(review,'stars', form.data['stars'])
     if form.errors:
-        return "Invalid Data"
+        return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
     db.session.commit()
     res = review.to_dict()

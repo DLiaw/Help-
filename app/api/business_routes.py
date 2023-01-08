@@ -53,10 +53,10 @@ def create_business():
     return {"errors": form.errors}, 401
 
 ## Update business by id
-@business_routes.route('/<int:id>',methods=['PUT'])
+@business_routes.route('/<int:id>/edit',methods=['PUT'])
 @login_required
 def update_business(id):
-    updated_business = Business.query.get(id)
+    updated_business = Business.query.filter_by(id = id).first()
     form = BusinessForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -87,7 +87,7 @@ def update_business(id):
         res = updated_business.to_dict()
         return res
     if form.errors:
-        return "Invalid Data"
+        return {"errors": form.errors}, 401
 
 ## Get business by id
 @business_routes.route('/<int:id>',methods=['GET'])
@@ -126,7 +126,7 @@ def review_business(id):
             db.session.commit()
             return review.to_dict()
         if form.errors:
-            return "Invalid data."
+            return {"errors": validation_errors_to_error_messages(form.errors)}, 401
 
 ## Add image for business
 @business_routes.route('/<int:id>/images',methods=['POST'])
