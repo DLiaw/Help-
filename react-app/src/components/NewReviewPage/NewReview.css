@@ -43,6 +43,9 @@
 .review-form-input {
     width: 350px;
     height: 450px;
+    resize: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .review-stars {
@@ -86,4 +89,11 @@
 
 .submit-button-div {
     padding-right: 40px;
+}
+
+.review-photo-input {
+    display: flex;
+    flex-direction: column;
+    width: 390px;
+    padding-right: 10px;
 }

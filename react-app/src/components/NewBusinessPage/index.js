@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createNewBusiness } from '../../store/business';
+import { createNewBusiness, addBusinessImage } from '../../store/business';
 import image1 from './image1.png'
 import image2 from './image2.png'
 import './NewBusiness.css'
@@ -32,6 +32,7 @@ const BusinessForm = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState({})
+    const [imageErrors, setImageErrors] = useState([])
     const [name, setName] = useState('')
     const [address, setAddress] = useState('')
     const [city, setCity] = useState('')
@@ -54,16 +55,20 @@ const BusinessForm = () => {
     const [friClose, setFriClose] = useState('')
     const [satClose, setSatClose] = useState('')
     const [sunClose, setSunClose] = useState('')
+    const [business_image, setBusiness_image] = useState('')
     const [site, setSite] = useState('')
     const [time, setTime] = useState(false)
+    const [errorsShow, setErrorsShown] = useState(false);
 
-    // useEffect(() => {
-    //     const errors = []
-    //     if (!site.includes('.com' || 'https:')) errors.push("Please enter a valid web address.")
-    //     setError(errors)
-    // }, [site])
+    useEffect(() => {
+        const errors = []
+        const format = ['.jpeg', '.png', '.jpg', '.gif']
+        if (!format.includes(business_image.slice(-4))) errors.push("Images must be in jpeg, png, jpg, or gif format.")
+        setImageErrors(errors)
+    }, [business_image])
 
     const handleSubmit = async (e) => {
+        setErrorsShown(true)
         e.preventDefault()
         const data = {
             name, address, city, state, zip, price, phone_number, business_type,
@@ -71,19 +76,28 @@ const BusinessForm = () => {
             tueClose, wedClose, thuClose, friClose, satClose, sunClose, site,
             owner_id: user.id.toString()
         }
+
         const business = await dispatch(createNewBusiness(data))
+
+        if (business && !business.errors) {
+            const business_id = business.id
+            const data = {
+                business_image, business_id
+            }
+            await dispatch(addBusinessImage(data))
+        }
+
         for (let key in business.errors) {
             if (key === 'monOpen' || key === 'tueOpen' || key === ' wedOpen' || key === ' thuOpen' || key === ' friOpen' || key === ' satOpen' || key === ' sunOpen' || key === 'monClose' ||
                 key === 'tueClose' || key === 'wedClose' || key === 'thuClose' || key === 'friClose' || key === 'satClose' || key === 'sunClose') {
                 setTime(true)
             }
-
         }
+
         if (business.errors) setErrors(business.errors)
-        else history.push(`/business/${business.id}`)
+        if (!business.errors && imageErrors.length == 0) history.push(`/business/${business.id}`)
+
     }
-
-
 
     return (
         <div className='form-main-div'>
@@ -116,6 +130,7 @@ const BusinessForm = () => {
                     <div className='single-form-div'>
                         <label id='ptag'>City*</label>
                         <input className='input-field' type="text"
+                            required
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
                             placeholder="City"
@@ -322,12 +337,25 @@ const BusinessForm = () => {
                         )}
                     </div>
                     <div className='single-form-div'>
+                        <label>Your Photos</label>
+                        <input required={true}
+                            className='input-field'
+                            type="text"
+                            value={business_image}
+                            onChange={(e) => { setBusiness_image(e.target.value); setImageErrors([]) }}
+                            placeholder="Your photo"
+                        ></input>
+                        {errorsShow && imageErrors.length > 0 && (
+                            <div className='errors'>{imageErrors[0]}</div>
+                        )}
+                    </div>
+                    <div className='single-form-div'>
                         <div style={{ paddingTop: '10px' }}>
                             <button onClick={handleSubmit} className='create-business'>Add business</button>
                         </div>
                     </div>
                 </form>
-            </div>
+            </div >
             <div className='business-images-div'>
                 <h2 id='text1' >Grow your business faster</h2>
                 <div id='business-image1'>
@@ -338,7 +366,7 @@ const BusinessForm = () => {
                     <h3 id='text2'>Reach more people who are ready to spend with help!</h3>
                 </div>
             </div>
-        </div>
+        </div >
     )
 
 }

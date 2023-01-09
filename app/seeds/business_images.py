@@ -3,37 +3,37 @@ from app.models import db, BusinessImage, environment, SCHEMA
 # Business image seeder
 def seed_business_image():
     name1 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/e7-_gIAg2Xe3QyeAQXoGAA/o.jpg"
     )
     name2 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/0tT4HhAGordykx1-GYDF1w/o.jpg"
     )
     name3 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/k2z0XH1FcnpCwBOWaGhVhQ/o.jpg"
     )
     name4 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/PxyS3ZEJJF0HT0JKfinJzw/o.jpg"
     )
     name5 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/yC26v0hWhpiNqDAYHpRUNQ/o.jpg"
     )
     name6 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/NaXoq2zZFTY6pVlLO7_27w/o.jpg"
     )
     name7 = BusinessImage(
-        business_id = 4,
+        business_id = 1,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/zAOPPC5_2Bv-H6rdOnEYmw/o.jpg"
     )
@@ -72,37 +72,37 @@ def seed_business_image():
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/gXBotyL321bW9L8DDY-GgA/o.jpg"
     )
     name15 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/m6WV0LH8idydgvEpR158Lw/o.jpg"
     )
     name16 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/9sslZRY7XcMRzXua9tScGA/o.jpg"
     )
     name17 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/kggGX4Qb9ik7MQhA4Y1-Yw/o.jpg"
     )
     name18 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/IQvOWgSynXUy8r9rr1Osag/o.jpg"
     )
     name19 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/YROIvNwRgUaLvgq-tz4Ewg/o.jpg"
     )
     name20 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/v6w_u-bW6vnKRFgfZi4xnQ/o.jpg"
     )
     name21 = BusinessImage(
-        business_id = 1,
+        business_id = 4,
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/me22WP362hpvDiLkMsk-Ww/o.jpg"
     )
@@ -526,6 +526,47 @@ def seed_business_image():
         preview = True,
         business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/tVsdG2lpjslyqZAO5_bSAg/o.jpg"
     )
+    name106 = BusinessImage(
+        business_id = 15,
+        preview = True,
+        business_image = 'https://s3-media0.fl.yelpcdn.com/bphoto/QCtIuEWx-3n0QiZXbzCSYw/o.jpg'
+    )
+    name107 = BusinessImage(
+        business_id = 15,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/uU91SvJQT-gg0FQt7--qBA/o.jpg"
+    )
+    name108 = BusinessImage(
+        business_id = 15,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/Uytv0GVYubleEdjd07kEKA/o.jpg"
+    )
+    name109 = BusinessImage(
+        business_id = 15,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/jj0D_g5ylK_zrrxJp0-jFw/o.jpg"
+    )
+    name110 = BusinessImage(
+        business_id = 1,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/jVsoSbUOOX0Dfv12qDff6A/o.jpg"
+    )
+    name111 = BusinessImage(
+        business_id = 1,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/JLdxcFnvVmsvLHeDRiRxng/o.jpg"
+    )
+    name112 = BusinessImage(
+        business_id = 1,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/224nPsM1p9-kBHWeJiHLiQ/o.jpg"
+    )
+    name113 = BusinessImage(
+        business_id = 1,
+        preview = True,
+        business_image= "https://s3-media0.fl.yelpcdn.com/bphoto/VVUPFjoeBJtZf2SlFgfjWA/o.jpg"
+    )
+
 
     db.session.add(name1)
     db.session.add(name2)
@@ -632,6 +673,15 @@ def seed_business_image():
     db.session.add(name103)
     db.session.add(name104)
     db.session.add(name105)
+    db.session.add(name106)
+    db.session.add(name107)
+    db.session.add(name108)
+    db.session.add(name109)
+    db.session.add(name110)
+    db.session.add(name111)
+    db.session.add(name112)
+    db.session.add(name113)
+
     db.session.commit()
 
 def undo_seed_business_image():

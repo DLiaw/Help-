@@ -19,6 +19,10 @@ const EditReview = () => {
     const [stars, setStars] = useState()
     const { reviewId, businessId } = useParams();
 
+    useEffect(() => {
+        setReview(businessReview.review)
+    }, [businessReview])
+
     useEffect(async () => {
         await dispatch(getOneReview(reviewId))
     }, [dispatch])

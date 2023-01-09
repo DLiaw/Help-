@@ -2,6 +2,7 @@ const GET_ALL_BUSINESS = '/business/GET_ALL_BUSINESS'
 const NEW_BUSINESS = '/business/NEW_BUSINESS'
 const ONE_BUSINESS = '/business/ONE_BUSINESS'
 const CLEANUP_BUSINESS = '/business/CLEAN_BUSINESS'
+const ADD_IMAGE = 'business/ADD_IMAGE'
 // Business actions
 
 const allBusiness = business => {
@@ -30,7 +31,32 @@ export const cleanupBusiness = () => {
         type: CLEANUP_BUSINESS
     }
 }
+
+export const addImage = (image) => {
+    return {
+        type: ADD_IMAGE,
+        image
+    }
+}
 // Business thunks
+
+export const addBusinessImage = (image) => async dispatch => {
+    console.log(image, 'FROM THUNKKKKKKKKKKKKKK')
+    const response = await fetch("/api/business_images/new", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(image)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        console.log(data, 'FROM THUNKKKKKKKKKKKKKK')
+        dispatch(addImage(image))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) return data
+    }
+}
 
 export const getAllBusiness = () => async dispatch => {
     const response = await fetch("/api/businesses")

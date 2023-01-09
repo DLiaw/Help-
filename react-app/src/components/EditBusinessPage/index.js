@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { updateBusiness } from '../../store/business';
@@ -29,6 +29,7 @@ const priceOption = ['$', '$$', '$$$', '$$$$']
 
 const EditBusinessForm = () => {
     const user = useSelector(state => state.session.user)
+    const business = useSelector(state => state.business.oneBusiness)
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState({})
@@ -57,6 +58,33 @@ const EditBusinessForm = () => {
     const [site, setSite] = useState('')
     const [time, setTime] = useState(false)
     const { id } = useParams()
+
+
+    useEffect(() => {
+        setAddress(business.address)
+        setCity(business.city)
+        setName(business.name)
+        setState(business.state)
+        setZip(business.zip)
+        setPrice(business.price)
+        setPhone(business.phone_number)
+        setType(business.business_type)
+        setMon(business.monOpen)
+        setTue(business.tueOpen)
+        setWed(business.wedOpen)
+        setThu(business.thuOpen)
+        setFri(business.friOpen)
+        setSat(business.satOpen)
+        setSun(business.sunOpen)
+        setMonClose(business.monClose)
+        setTueClose(business.tueClose)
+        setWedClose(business.wedClose)
+        setThuClose(business.thuClose)
+        setFriClose(business.friClose)
+        setSatClose(business.satClose)
+        setSunClose(business.sunClose)
+        setSat(business.site)
+    }, [business])
 
     const handleSubmit = async (e) => {
         e.preventDefault()

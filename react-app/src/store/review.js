@@ -1,16 +1,18 @@
 const GET_ALL_REVIEWS = '/review/GET_ALL_REVIEWS'
 const ONE_REVIEW = '/review/ONE_REVIEW'
 const CLEANUP_REVIEW = '/review/CLEANUP_REVIEW'
-const LOAD_BUSINESS_REVIEWS = '/review/LOAD_BUSINESS_REVIEWS'
+// const LOAD_BUSINESS_REVIEWS = '/review/LOAD_BUSINESS_REVIEWS'
 const DELETE_REVIEW = '/reivew/DELETE_REVIEW'
+const ADD_IMAGE = 'review/ADD_IMAGE'
+
 // Review actions
 
-const businessReviews = reviews => {
-    return {
-        type: LOAD_BUSINESS_REVIEWS,
-        reviews
-    }
-}
+// const businessReviews = reviews => {
+//     return {
+//         type: LOAD_BUSINESS_REVIEWS,
+//         reviews
+//     }
+// }
 
 const deleteReview = id => {
     return {
@@ -38,7 +40,30 @@ export const cleanupReview = () => {
         type: CLEANUP_REVIEW
     }
 }
+
+export const addImage = (image) => {
+    return {
+        type: ADD_IMAGE,
+        image
+    }
+}
 // Reviews thunks
+
+export const addReviewImage = (image) => async dispatch => {
+    const response = await fetch("/api/review_images/new", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(image)
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(addImage(image))
+        return data
+    } else if (response.status < 500) {
+        const data = await response.json()
+        if (data.errors) return data
+    }
+}
 
 export const newReview = (data) => async dispatch => {
     const response = await fetch(`/api/business/${data.business_id}/reviews`, {

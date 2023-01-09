@@ -16,7 +16,9 @@ const SingleReview = ({ review }) => {
                 </div>
             </div>
             <div className="one">
-                <img className="singleReviewCardImg" alt="review-logo" src={review.images[0]?.review_image}></img>
+                <img className="singleReviewCardImg" alt="review-logo"
+                    src={review.images[0]?.review_image}
+                    onError={e => { e.currentTarget.src = 'https://www.drupal.org/files/project-images/broken-image.jpg' }}></img>
             </div>
             <div className="business-name">
                 <NavLink className="business-nav" to={`/business/${review.business.id}`}>{review.business.name}</NavLink>

@@ -41,13 +41,14 @@ const BusinessReviews = ({ singleReview }) => {
                     </div>}
                 </div>
             </div>
-            <div>
+            <div className="single-review-div">
                 {singleReview.review}
             </div>
             <div className="business-review-images">
 
                 {singleReview.images.map(e => (
-                    <img alt='review-photos' src={e?.review_image}></img>
+                    <img alt='review-photos' src={e?.review_image}
+                        onError={e => { e.currentTarget.src = 'https://www.drupal.org/files/project-images/broken-image.jpg' }}></img>
                 ))}
             </div>
         </div>
