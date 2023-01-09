@@ -32,7 +32,6 @@ const SingleBusiness = ({ business }) => {
                 <h3>
                     {business.name}
                 </h3>
-
                 <div>
                     <div style={{ width: '100px' }}>
                         <Stars rating={rating} />
@@ -44,9 +43,12 @@ const SingleBusiness = ({ business }) => {
                 </div>
                 <div className="hours-edit-delete">
                     {business.monOpen}-{business.monClose}&nbsp;&nbsp;&nbsp;&nbsp;
-                    {user && user?.id === business?.owner_id && <div>
-                        <button className="edit-delete-button" onClick={handleSubmit}>Delete</button>&nbsp;&nbsp;
-                        <NavLink to={`/business/${business.id}/edit`}><button className="edit-delete-button" >Edit</button></NavLink>
+
+                    {user && user?.id === business?.owner_id && <div className="business-edit-delete">
+
+                        <button className="business-edit-delete-button" onClick={handleSubmit}>Delete</button>&nbsp;&nbsp;
+
+                        <NavLink to={`/business/${business.id}/edit`}><button className="business-edit-delete-button" >Edit</button></NavLink>
                     </div>}
                 </div>
             </div>

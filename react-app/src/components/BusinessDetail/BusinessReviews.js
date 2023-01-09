@@ -31,8 +31,8 @@ const BusinessReviews = ({ singleReview }) => {
                 <div>
                     {new Date(singleReview.created_at).toDateString()}
                 </div>
-                <div>
-                    {user?.id === singleReview?.user_id && user && <div>
+                <div >
+                    {user?.id === singleReview?.user_id && user && <div className="business-buttons-div">
                         &nbsp;&nbsp;<button className="edit-delete-buttons" onClick={handleSubmit}>Delete</button>&nbsp;&nbsp;
 
                         <NavLink to={`/business/${singleReview.business_id}/review/${singleReview.id}/edit`}>

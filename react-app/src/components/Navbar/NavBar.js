@@ -72,9 +72,9 @@ const NavBar = () => {
               <div style={{ paddingTop: '22px' }}>
                 <NavLink to="/business/new" style={{ color: 'black', textDecoration: 'none' }}>For Business</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
-              <div style={{ paddingTop: '22px' }}>
+              {/* <div style={{ paddingTop: '22px' }}>
                 <NavLink to='/business/2' style={{ color: 'black', textDecoration: 'none' }}>Write a Review</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </div>
+              </div> */}
               <div className='profile-button' onClick={openMenu}>
                 <i className="fa-solid fa-circle-user" />
               </div>
