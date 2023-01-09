@@ -7,12 +7,12 @@
     min-width: 800px;
 }
 
-/* .business-images {
+.business-images {
     display: flex;
     width: 80%;
     height: 327px;
     overflow: hidden;
-} */
+}
 
 .business-images {
     display: grid;
@@ -56,13 +56,15 @@
 .info-photo {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     width: 40vw;
     color: white;
-    height: 315px;
+    height: 145px;
     z-index: 99;
-    min-width: 800px;
-    align-items: flex-end;
+    min-width: 500px;
+    /* align-items: flex-end; */
+    justify-content: space-between;
+    position: absolute;
+    top: 220px;
 }
 
 .business-name-info {

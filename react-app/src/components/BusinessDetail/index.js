@@ -95,13 +95,13 @@ const BusinessDetail = () => {
                         <img className='business-img' alt="business-logo" src={e.business_image} onError={e => { e.currentTarget.src = 'https://www.drupal.org/files/project-images/broken-image.jpg' }}></img>
                     ))}
                 </div>
-                <div className='info-photo'>
-                    <div >
-                        <SingleBusiness business={business} />
-                    </div>
-                    <div className='photo-button-div'>
-                        <button className='photo-button' style={{ border: '2px solid red;' }}>See All Photos</button>
-                    </div>
+            </div>
+            <div className='info-photo'>
+                <div >
+                    <SingleBusiness business={business} />
+                </div>
+                <div className='photo-button-div'>
+                    <button className='photo-button' style={{ border: '2px solid red;' }}>See All Photos</button>
                 </div>
             </div>
             <div className='review-business-info'>
