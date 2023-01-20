@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 445px;
+    margin-right: 520px;
+    margin-bottom: 150px;
 }
 
 .title-h1 {
@@ -22,7 +23,7 @@
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 2ch;
-    column-gap: 2ch;
+    column-gap: 6ch;
     width: 300px;
     height: 400px;
 }

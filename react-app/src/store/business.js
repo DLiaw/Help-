@@ -8,7 +8,7 @@ const ADD_IMAGE = 'business/ADD_IMAGE'
 const allBusiness = business => {
     return {
         type: GET_ALL_BUSINESS,
-        business
+        "business": business
     }
 }
 
@@ -41,7 +41,6 @@ export const addImage = (image) => {
 // Business thunks
 
 export const addBusinessImage = (image) => async dispatch => {
-    console.log(image, 'FROM THUNKKKKKKKKKKKKKK')
     const response = await fetch("/api/business_images/new", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -49,7 +48,6 @@ export const addBusinessImage = (image) => async dispatch => {
     })
     if (response.ok) {
         const data = await response.json()
-        console.log(data, 'FROM THUNKKKKKKKKKKKKKK')
         dispatch(addImage(image))
         return data
     } else if (response.status < 500) {
@@ -59,10 +57,10 @@ export const addBusinessImage = (image) => async dispatch => {
 }
 
 export const getAllBusiness = () => async dispatch => {
-    const response = await fetch("/api/businesses")
+    const response = await fetch("/api/business")
     if (response.ok) {
         const data = await response.json()
-        dispatch(allBusiness(data))
+        dispatch(allBusiness(data.businesses))
     }
 }
 
@@ -120,9 +118,11 @@ export default function businessReducer(state = oldState, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_ALL_BUSINESS: {
-            action.allBusiness.forEach(e => {
-                newState.businesses[e.id] = e
-            })
+            if (action.business) {
+                action.business.forEach(e => {
+                    newState.allBusiness[e.id] = e
+                })
+            }
             return newState
         }
         case ONE_BUSINESS: {

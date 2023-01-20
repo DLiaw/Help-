@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     min-width: 800px;
+    margin-bottom: 100px
 }
 
 .business-images {
@@ -171,7 +172,7 @@
     width: 325px;
     padding: 10px;
     /* white-space: preline; */
-    overflow-wrap: break-word;
+    /* overflow-wrap: break-word; */
 }
 
 .business-info-address {
@@ -215,6 +216,7 @@
 
 
 .single-review-div {
+    width: 93%;
     word-wrap: break-word;
 }
 
@@ -241,6 +243,11 @@
 
 .business-image>img {
     width: 200px;
+}
+
+.business-map {
+    height: 200px;
+    width: 400px;
 }
 
 .business-open-close {

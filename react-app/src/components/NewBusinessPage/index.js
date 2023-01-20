@@ -162,7 +162,7 @@ const BusinessForm = () => {
                         )}
                     </div>
                     <div className='single-form-div'>
-                        <label id='ptag'>Pirce*</label>
+                        <label id='ptag'>Price*</label>
                         <select className='state-price' type="text"
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}>

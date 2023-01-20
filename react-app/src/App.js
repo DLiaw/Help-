@@ -64,6 +64,7 @@ function App() {
         </Route>
         <Route path='/business/:id' exact={true}>
           <BusinessDetail />
+          <Footer />
         </Route>
         <Route path='/business/:id/review' exact={true}>
           <RedNavBar />

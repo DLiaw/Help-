@@ -5,6 +5,7 @@ import { getOneBusiness } from '../../store/business';
 import { getBusinessReviews } from '../../store/review'
 import SingleBusiness from './SingleBusiness'
 import BusinessReviews from './BusinessReviews'
+import MyGoogleMap from '../GoogleMaps';
 import Navbar from './Nav.js'
 import image from './image.png'
 import './businessDetail.css'
@@ -18,7 +19,7 @@ const BusinessDetail = () => {
     const reviews = useSelector(state => Object.values(state.review?.allReviews))
     const [scrollX, setscrollX] = useState(0);
     const [scrolEnd, setscrolEnd] = useState(false);
-    const scrl = useRef()
+    const scrl = useRef(null)
 
     useEffect(async () => {
         await dispatch(getBusinessReviews(id))
@@ -106,6 +107,9 @@ const BusinessDetail = () => {
             </div>
             <div className='review-business-info'>
                 <div className='user-reviews'>
+                    {/* <div className='business-map'>
+                        <MyGoogleMap business={business} />
+                    </div> */}
                     <div className='business-hour-image'>
                         <div className='business-image'>
                             <img alt='business-hours' src={image}></img>
@@ -140,24 +144,29 @@ const BusinessDetail = () => {
                         ))}
                     </div>
                 </div>
-                <div className='business-info'>
-                    <div className='business-info-site' >
-                        <a target="_blank" style={{ textDecoration: 'none', color: 'grey', wordBreak: 'break-all' }} href={business.site}>
-                            {business.site}
-                        </a>
-                        <i class="fa-solid fa-location-arrow" />
-                    </div>
-                    <div className='business-info-phone'>
-                        {business.phone_number}<i class="fa-solid fa-phone-volume" />
-                    </div>
-                    <div className='business-info-address'>
-                        <div className='business-info-address-detail'>
-                            {business.address}.&nbsp;{business.city}&nbsp;
-                            {business.state},&nbsp;{business.zip}
+                <div>
+                    <div className='business-info'>
+                        <div className='business-info-site' >
+                            <a target="_blank" style={{ textDecoration: 'none', color: 'grey', wordBreak: 'break-all', textOverflow: 'ellipsis' }} href={business.site}>
+                                {business.site}
+                            </a>
+                            <i class="fa-solid fa-location-arrow" />
                         </div>
-                        <div>
-                            <i class="fa-solid fa-location-dot" />
+                        <div className='business-info-phone'>
+                            {business.phone_number}<i class="fa-solid fa-phone-volume" />
                         </div>
+                        <div className='business-info-address'>
+                            <div className='business-info-address-detail'>
+                                {business.address}.&nbsp;{business.city}&nbsp;
+                                {business.state},&nbsp;{business.zip}
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-location-dot" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='business-map'>
+                        <MyGoogleMap business={business} />
                     </div>
                 </div>
             </div>

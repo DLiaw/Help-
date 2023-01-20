@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import SearchBar from '../SearchBar.js';
 import './NavBar.css'
 
 const NavBar = () => {
@@ -37,6 +38,9 @@ const NavBar = () => {
               <p id='help'>Help!</p>
             </NavLink>
           </div>
+          <div>
+            <SearchBar />
+          </div>
           <div className='login-signup'>
             <div style={{ paddingTop: '18px' }}>
               <NavLink to="/sign-up" style={{ color: 'black', textDecoration: 'none' }}>For Business</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -67,6 +71,9 @@ const NavBar = () => {
                 <img style={{ height: "50px", width: "50px", objectFit: "scale-down" }} alt='home-button' src='https://logos-world.net/wp-content/uploads/2020/12/Yelp-Logo-700x394.png'></img>
                 <p id='help'>Help!</p>
               </NavLink>
+            </div>
+            <div>
+              <SearchBar />
             </div>
             <div className='login-signup'>
               <div style={{ paddingTop: '22px' }}>
