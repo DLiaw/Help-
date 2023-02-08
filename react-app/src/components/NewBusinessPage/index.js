@@ -60,6 +60,7 @@ const BusinessForm = () => {
     const [time, setTime] = useState(false)
     const [errorsShow, setErrorsShown] = useState(false);
 
+
     useEffect(() => {
         const errors = []
         const format = ['.jpeg', '.png', '.jpg', '.gif']
@@ -67,7 +68,13 @@ const BusinessForm = () => {
         setImageErrors(errors)
     }, [business_image])
 
-    const handleSubmit = async (e) => {
+    const updateImage = async (e) => {
+        const file = e.target.files[0];
+        await setBusiness_image(file);
+    }
+
+
+    const handleNewBusiness = async (e) => {
         setErrorsShown(true)
         e.preventDefault()
         const data = {
@@ -80,11 +87,12 @@ const BusinessForm = () => {
         const business = await dispatch(createNewBusiness(data))
 
         if (business && !business.errors) {
+            const data = new FormData()
             const business_id = business.id
-            const data = {
-                business_image, business_id
-            }
-            await dispatch(addBusinessImage(data))
+            data.append('image', business_image)
+            data.append('business_id', business_id)
+            const newBusiness = await dispatch(addBusinessImage(data))
+            if (newBusiness) history.push(`/business/${business.id}`)
         }
 
         for (let key in business.errors) {
@@ -104,7 +112,7 @@ const BusinessForm = () => {
             <div>
                 <h3 style={{ color: 'rgba(211, 35, 35, 255)' }}>Provide Business details.</h3>
                 <label style={{ color: 'red' }}>* fields are required.</label>
-                <form className='business-form' onSubmit={handleSubmit}>
+                <form className='business-form' >
                     <div className='single-form-div'>
                         <label id='ptag'>Business name*</label>
                         <input className='input-field' type="text"
@@ -338,20 +346,22 @@ const BusinessForm = () => {
                     </div>
                     <div className='single-form-div'>
                         <label>Your Photos</label>
-                        <input required={true}
-                            className='input-field'
-                            type="text"
-                            value={business_image}
-                            onChange={(e) => { setBusiness_image(e.target.value); setImageErrors([]) }}
-                            placeholder="Your photo"
-                        ></input>
+                        <form>
+                            <input required={true}
+                                className='input-field'
+                                type="file"
+                                accept='image/*'
+                                onChange={updateImage}
+                                placeholder="Your photo"
+                            ></input>
+                        </form>
                         {errorsShow && imageErrors.length > 0 && (
                             <div className='errors'>{imageErrors[0]}</div>
                         )}
                     </div>
                     <div className='single-form-div'>
                         <div style={{ paddingTop: '10px' }}>
-                            <button onClick={handleSubmit} className='create-business'>Add business</button>
+                            <button onClick={handleNewBusiness} className='create-business'>Add business</button>
                         </div>
                     </div>
                 </form>

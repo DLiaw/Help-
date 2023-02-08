@@ -10,6 +10,7 @@ const SingleBusiness = ({ business }) => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
     const history = useHistory()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         await dispatch(deleteOldBusiness(business.id))

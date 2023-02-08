@@ -30,14 +30,22 @@ const SearchBar = () => {
             <div className='searchInput'>
                 <input type='text'
                     className='searchTextInput'
+                    style={{ borderRadius: '5px 0px 0px 5px' }}
                     onChange={handleFilter}
                     placeholder='Businesses...' />
+                <input type='text'
+                    style={{ cursor: "not-allowed" }}
+                    className='searchTextInput'
+                    placeholder='Seattle, WA' />
                 <div className='searchIcon'><i class="fa-solid fa-magnifying-glass" /></div>
             </div>
             {filterData.length != 0 && (
                 < div className='searchResults'>
                     {filterData.map((value, i) => {
-                        return <NavLink style={{ textDecoration: 'none', color: 'grey' }} key={i} to={`/business/${value.id}`}>{value.name}</NavLink>
+                        return <NavLink className='search-nav' style={{ textDecoration: 'none', color: 'grey' }} key={i} to={`/business/${value.id}`}>
+                            <img alt='search-business' src={value.images[0]?.business_image} ></img>
+                            <div>{value.name}</div>
+                        </NavLink>
                     })}
                 </div>
             )}

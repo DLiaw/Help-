@@ -9,3 +9,7 @@ body {
     font-size: 10px;
     color: red;
 }
+
+* {
+    font-family: Bold;
+}

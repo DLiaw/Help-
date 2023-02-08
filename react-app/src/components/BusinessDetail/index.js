@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { getOneBusiness } from '../../store/business';
 import { getBusinessReviews } from '../../store/review'
 import SingleBusiness from './SingleBusiness'
@@ -13,6 +13,7 @@ import './businessDetail.css'
 
 const BusinessDetail = () => {
     const [load, setLoad] = useState(false)
+    const user = useSelector(state => state.session.user)
     const business = useSelector(state => state.business?.oneBusiness)
     const { id } = useParams();
     const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const BusinessDetail = () => {
     const [scrollX, setscrollX] = useState(0);
     const [scrolEnd, setscrolEnd] = useState(false);
     const scrl = useRef(null)
+
 
     useEffect(async () => {
         await dispatch(getBusinessReviews(id))
@@ -64,18 +66,6 @@ const BusinessDetail = () => {
             setscrolEnd(false);
         }
     };
-    // let imageArray;
-    // imageArray = Object.values(business?.images)
-    // if (imageArray.length <= 1) {
-    //     imageArray = [
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/zVUOb8zCKd17fRCUwIAgIw/o.jpg',
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/Ik-uWdJVGvWS6GF7OHnMJA/o.jpg',
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/vLRy6HUxJjh01PI8Cb9LxQ/o.jpg',
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/vQjqnTEn7S8u1-vB4f1ccw/o.jpg',
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/yxWLw3y86cOlmRN49MYyWA/o.jpg',
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/ivQP68-aMWMxgJGiuDQeOA/o.jpg',
-    //         'https://s3-media0.fl.yelpcdn.com/bphoto/I5nwSAbwuUa5p4oga3gG-g/o.jpg']
-    // }
 
     if (!Object.values(business).length) return null;
     return load && (
@@ -101,9 +91,10 @@ const BusinessDetail = () => {
                 <div >
                     <SingleBusiness business={business} />
                 </div>
-                <div className='photo-button-div'>
-                    <button className='photo-button' style={{ border: '2px solid red;' }}>See All Photos</button>
-                </div>
+                {business.owner_id == user.id && <div className='photo-button-div'>
+                    <NavLink className='photo-button' style={{ textDecoration: 'none' }} to={`/business/${id}/images`} >Add Photos</NavLink>
+                    {/* <button className='photo-button' style={{ border: '2px solid red;' }}>Add Photos</button> */}
+                </div>}
             </div>
             <div className='review-business-info'>
                 <div className='user-reviews'>
@@ -144,7 +135,7 @@ const BusinessDetail = () => {
                         ))}
                     </div>
                 </div>
-                <div>
+                <div className='business-info-maps'>
                     <div className='business-info'>
                         <div className='business-info-site' >
                             <a target="_blank" style={{ textDecoration: 'none', color: 'grey', wordBreak: 'break-all', textOverflow: 'ellipsis' }} href={business.site}>

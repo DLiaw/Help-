@@ -1,0 +1,77 @@
+/* SingleBusinessImage */
+
+#businessPhoto {
+    height: 20vh;
+    width: 300px;
+    border-radius: 2%;
+    object-fit: cover;
+}
+
+.single-photo-drop {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.ellipsis-div {
+    display: flex;
+    flex-direction: row;
+    padding-right: 7px;
+    position: relative;
+}
+
+
+.booking-delete {
+    display: flex;
+    flex-direction: column;
+    padding-right: 70px;
+}
+
+.deleteBtn {
+    position: absolute;
+}
+
+/* business images index.js */
+
+.business-image-main-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    row-gap: 1rem;
+}
+
+.singlePhotoImage {
+    display: grid;
+    grid-gap: 2rem;
+    width: 90%;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    text-align: center;
+}
+
+.imgBtn {
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 70px;
+    height: 30px;
+}
+
+.file-submit-div {
+    display: flex;
+    flex-direction: row;
+}
+
+input::file-selector-button {
+    color: white;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 90px;
+    height: 30px;
+}

@@ -38,7 +38,7 @@ const NavBar = () => {
               <p id='help'>Help!</p>
             </NavLink>
           </div>
-          <div>
+          <div className='search-main'>
             <SearchBar />
           </div>
           <div className='login-signup'>

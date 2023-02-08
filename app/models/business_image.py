@@ -11,7 +11,7 @@ class BusinessImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     business_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('business.id')), nullable=False)
     business_image = db.Column(db.String(500),nullable=False)
-    preview = db.Column(db.Boolean, nullable=False, default=False)
+    preview = db.Column(db.Boolean, nullable=True, default=False)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(),server_onupdate=db.func.now())
 

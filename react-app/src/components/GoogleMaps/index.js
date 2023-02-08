@@ -45,7 +45,7 @@ const MyGoogleMap = ({ business }) => {
         marginLeft: '10px',
         marginTop: '25px',
         width: '390px',
-        height: '200px'
+        height: '200px',
     };
 
     const [map, setMap] = useState(null)

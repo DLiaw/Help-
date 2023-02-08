@@ -3,6 +3,7 @@ const NEW_BUSINESS = '/business/NEW_BUSINESS'
 const ONE_BUSINESS = '/business/ONE_BUSINESS'
 const CLEANUP_BUSINESS = '/business/CLEAN_BUSINESS'
 const ADD_IMAGE = 'business/ADD_IMAGE'
+const DELETE_IMAGE = 'business/DELETE_IMAGE'
 // Business actions
 
 const allBusiness = business => {
@@ -38,13 +39,13 @@ export const addImage = (image) => {
         image
     }
 }
+
 // Business thunks
 
 export const addBusinessImage = (image) => async dispatch => {
     const response = await fetch("/api/business_images/new", {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(image)
+        body: image
     })
     if (response.ok) {
         const data = await response.json()
@@ -80,12 +81,6 @@ export const createNewBusiness = (business) => async dispatch => {
     }
 }
 
-export const deleteOldBusiness = (id) => async dispatch => {
-    await fetch(`/api/business/${id}`, {
-        method: 'DELETE'
-    })
-}
-
 export const getOneBusiness = (business) => async dispatch => {
 
     const response = await fetch(`/api/business/${business}`)
@@ -110,6 +105,18 @@ export const updateBusiness = (business) => async dispatch => {
         const data = await response.json()
         if (data.errors) return data
     }
+}
+
+export const deleteOldBusiness = (id) => async dispatch => {
+    await fetch(`/api/business/${id}`, {
+        method: 'DELETE'
+    })
+}
+
+export const deleteBusinessImage = (id) => async dispatch => {
+    await fetch(`/api/business_images/${id}`, {
+        method: 'DELETE'
+    })
 }
 // Business reducers
 
