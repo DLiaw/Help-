@@ -141,6 +141,10 @@ export default function businessReducer(state = oldState, action) {
             newState.oneBusiness = {}
             return newState
         }
+        case DELETE_IMAGE: {
+            delete newState.oneBusiness.images[action.id]
+            return newState
+        }
         default:
             return oldState
     }

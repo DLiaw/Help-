@@ -345,14 +345,13 @@ const BusinessForm = () => {
                         )}
                     </div>
                     <div className='single-form-div'>
-                        <label>Your Photos</label>
+                        <label>Add photo</label>
                         <form>
                             <input required={true}
                                 className='input-field'
                                 type="file"
                                 accept='image/*'
                                 onChange={updateImage}
-                                placeholder="Your photo"
                             ></input>
                         </form>
                         {errorsShow && imageErrors.length > 0 && (

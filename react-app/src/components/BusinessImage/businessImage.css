@@ -53,9 +53,9 @@
 
 .imgBtn {
     color: white;
-    background-color: red;
+    background-color: rgba(211, 35, 35, 255);
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     width: 70px;
     height: 30px;
@@ -68,10 +68,14 @@
 
 input::file-selector-button {
     color: white;
-    background-color: red;
+    background-color: rgba(211, 35, 35, 255);
     border: none;
-    border-radius: 5px;
+    border-radius: 3px;
     cursor: pointer;
     width: 90px;
+    height: 30px;
+}
+
+.input-field {
     height: 30px;
 }

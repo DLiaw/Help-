@@ -15,7 +15,7 @@ const UploadImage = () => {
 
     useEffect(() => {
         if (!Object.values(business).length) dispatch(getOneBusiness(id))
-        if (Object.values(business).length <= 0) history.push(`/business/${id}/images`)
+        // if (Object.values(business).length <= 0) history.push(`/business/${id}/images`)
     }, [dispatch, business])
 
     const updateImage = (e) => {
