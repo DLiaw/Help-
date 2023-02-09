@@ -74,7 +74,7 @@ const BusinessDetail = () => {
             <Navbar business={business} />
             <div className='business-images business-snaps' ref={scrl} onScroll={scrollCheck}>
                 <div className='business-gradient'>
-                    <button className="prev scrollbtn" onClick={() => slide(-300)} >
+                    <button className="prev scrollbtn" onClick={() => slide(-300)}>
                         <i class="fa-solid fa-angles-left"></i>
                     </button>
                     <button className="next scrollbtn" onClick={() => slide(+300)}>
@@ -93,14 +93,10 @@ const BusinessDetail = () => {
                 </div>
                 {business.owner_id == user.id && <div className='photo-button-div'>
                     <NavLink className='photo-button' style={{ textDecoration: 'none' }} to={`/business/${id}/images`} >Add Photos</NavLink>
-                    {/* <button className='photo-button' style={{ border: '2px solid red;' }}>Add Photos</button> */}
                 </div>}
             </div>
             <div className='review-business-info'>
                 <div className='user-reviews'>
-                    {/* <div className='business-map'>
-                        <MyGoogleMap business={business} />
-                    </div> */}
                     <div className='business-hour-image'>
                         <div className='business-image'>
                             <img alt='business-hours' src={image}></img>
