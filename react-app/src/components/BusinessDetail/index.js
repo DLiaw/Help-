@@ -91,7 +91,7 @@ const BusinessDetail = () => {
                 <div >
                     <SingleBusiness business={business} />
                 </div>
-                {business.owner_id == user.id && <div className='photo-button-div'>
+                {user && business.owner_id == user.id && <div className='photo-button-div'>
                     <NavLink className='photo-button' style={{ textDecoration: 'none' }} to={`/business/${id}/images`} >Add Photos</NavLink>
                 </div>}
             </div>

@@ -70,14 +70,6 @@ const MyGoogleMap = ({ business }) => {
                     <Marker key={business.id}
                         position={{ lat: currentPosition?.lat, lng: currentPosition?.lng }}
                         title={business.name}
-                        // icon={{
-                        //     path: 'M 100 100 L 300 100 L 200 300 z',
-                        //     fillColor: business.color,
-                        //     fillOpacity: 1,
-                        //     scale: .2,
-                        //     strokeColor: 'gold',
-                        //     strokeWeight: 2
-                        // }}
                         icon={<i style={{ color: 'pink', fontSize: '15px' }} class="fa-solid fa-location-dot" />}
                         streetView={false} />
                 </GoogleMap>}

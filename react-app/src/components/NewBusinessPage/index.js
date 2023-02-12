@@ -61,18 +61,17 @@ const BusinessForm = () => {
     const [errorsShow, setErrorsShown] = useState(false);
 
 
-    useEffect(() => {
-        const errors = []
-        const format = ['.jpeg', '.png', '.jpg', '.gif']
-        if (!format.includes(business_image.slice(-4))) errors.push("Images must be in jpeg, png, jpg, or gif format.")
-        setImageErrors(errors)
-    }, [business_image])
+    // useEffect(() => {
+    //     const errors = []
+    //     const format = ['.jpeg', '.png', '.jpg', '.gif']
+    //     if (!format.includes(business_image.slice(-4))) errors.push("Images must be in jpeg, png, jpg, or gif format.")
+    //     setImageErrors(errors)
+    // }, [business_image])
 
     const updateImage = async (e) => {
         const file = e.target.files[0];
         await setBusiness_image(file);
     }
-
 
     const handleNewBusiness = async (e) => {
         setErrorsShown(true)

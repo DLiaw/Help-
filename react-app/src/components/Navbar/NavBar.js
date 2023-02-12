@@ -45,10 +45,10 @@ const NavBar = () => {
             <div style={{ paddingTop: '18px' }}>
               <NavLink to="/sign-up" style={{ color: 'black', textDecoration: 'none' }}>For Business</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
-            <div style={{ paddingTop: '18px' }}>
+            {<div style={{ paddingTop: '18px' }}>
               <NavLink to='/sign-up' style={{ color: 'black', textDecoration: 'none' }}>Write a Review</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
+            </div>}
             <div className='signup-div'>
               <NavLink to='/login' style={{ paddingLeft: '6px' }} className='login' exact={true} activeClassName='active'>
                 Login
@@ -79,9 +79,6 @@ const NavBar = () => {
               <div style={{ paddingTop: '22px' }}>
                 <NavLink to="/business/new" style={{ color: 'black', textDecoration: 'none' }}>For Business</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </div>
-              {/* <div style={{ paddingTop: '22px' }}>
-                <NavLink to='/business/2' style={{ color: 'black', textDecoration: 'none' }}>Write a Review</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </div> */}
               <div className='profile-button' onClick={openMenu}>
                 <i className="fa-solid fa-circle-user" />
               </div>

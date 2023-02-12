@@ -8,14 +8,12 @@ import './businessImage.css';
 
 const UploadImage = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const { id } = useParams()
     const business = useSelector(state => state.business.oneBusiness)
     const [business_image, setBusiness_image] = useState('')
 
     useEffect(() => {
         if (!Object.values(business).length) dispatch(getOneBusiness(id))
-        // if (Object.values(business).length <= 0) history.push(`/business/${id}/images`)
     }, [dispatch, business])
 
     const updateImage = (e) => {

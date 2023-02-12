@@ -52,8 +52,7 @@ export const addImage = (image) => {
 export const addReviewImage = (image) => async dispatch => {
     const response = await fetch("/api/review_images/new", {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(image)
+        body: image
     })
     if (response.ok) {
         const data = await response.json()

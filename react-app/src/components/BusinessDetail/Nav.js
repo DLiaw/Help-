@@ -8,6 +8,16 @@ import './Navbar.css'
 const Navbar = ({ business }) => {
     const user = useSelector(state => state.session.user)
     const [showMenu, setShowMenu] = useState(false)
+    const [review, setReview] = useState(false)
+    const reviews = Object.values(business.reviews)
+
+    useEffect(() => {
+        const reviewFound = reviews.find(review => {
+            return user && review.user_id == user.id
+        })
+        if (reviewFound == undefined) setReview(true)
+    }, [review])
+
 
     const openMenu = () => {
         if (showMenu) return
@@ -70,9 +80,9 @@ const Navbar = ({ business }) => {
                             <div style={{ paddingTop: '25px' }}>
                                 <NavLink to="/business/new" style={{ color: 'black', textDecoration: 'none' }}>For Business</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </div>
-                            <div style={{ paddingTop: '25px' }}>
+                            {review && user && user.id !== business.owner_id && < div style={{ paddingTop: '25px' }}>
                                 <NavLink to={`/business/${business.id}/review`} style={{ color: 'black', textDecoration: 'none' }}>Write a Review</NavLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </div>
+                            </div>}
                             <div className='profile-button-business-page' onClick={openMenu}>
                                 <i style={{ paddingTop: '10px', fontSize: '35px', color: "grey" }} className="fa-solid fa-circle-user" />
                                 {showMenu &&
@@ -81,9 +91,9 @@ const Navbar = ({ business }) => {
                             </div>
                         </div>
                     </nav>
-                </div>
+                </div >
             }
-        </div>
+        </div >
     );
 }
 

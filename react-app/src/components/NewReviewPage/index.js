@@ -11,7 +11,6 @@ import image2 from './image2.png'
 const CreateReview = () => {
     const user = useSelector(state => state.session.user)
     const business = useSelector(state => state.business.oneBusiness)
-    const lastReview = useSelector(state => state?.review?.oneReview)
     const dispatch = useDispatch()
     const history = useHistory()
     const [errors, setErrors] = useState({})
@@ -21,13 +20,10 @@ const CreateReview = () => {
     const [review_image, setReview_image] = useState('')
     const [errorsShow, setErrorsShown] = useState(false);
 
-    useEffect(() => {
-        const errors = []
-        const format = ['.jpeg', '.png', '.jpg', '.gif']
-        if (!format.includes(review_image.slice(-4))) errors.push("Images must be in jpeg, png, jpg, or gif format.")
-        setImageErrors(errors)
-    }, [review_image])
-
+    const reviewImage = (e) => {
+        const file = e.target.files[0];
+        setReview_image(file);
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -38,14 +34,14 @@ const CreateReview = () => {
         const reviewNew = await dispatch(newReview(reviews))
 
         if (reviewNew && !reviewNew.errors) {
+            const data = new FormData()
             const review_id = reviewNew.id
-            const data = {
-                review_image, review_id
-            }
+            await data.append('image', review_image)
+            await data.append('review_id', review_id)
             await dispatch(addReviewImage(data))
         }
         if (reviewNew.errors) setErrors(reviewNew.errors)
-        if (!reviewNew.errors && imageErrors.length == 0) history.push(`/business/${business.id}`)
+        if (!reviewNew.errors) history.push(`/business/${business.id}`)
     }
 
     return (
@@ -75,20 +71,17 @@ const CreateReview = () => {
                     )}
                 </div>
                 <div className='reivew-input-main review-photo-input'>
-                    {/* <label style={{ fontSize: '15px' }}>Your Photos</label> */}
-                    <input className='input-field'
-                        style={{ width: '348px' }}
-                        type="text"
-                        value={review_image}
-                        onChange={(e) => setReview_image(e.target.value)}
-                        placeholder="Your photo"
-                        required
-                    ></input>
+                    <form>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={reviewImage}
+                        />
+                    </form>
                     {errorsShow && imageErrors.length > 0 && (
                         <div className='errors'>{imageErrors[0]}</div>
                     )}
                 </div>
-
                 <div className='review-star-div' >
                     <div className='stars-div'>
                         <StarRating className='review-stars' setStars={setStars} stars={stars} value={stars} />
@@ -97,7 +90,6 @@ const CreateReview = () => {
                         <button className='review-submit-button' onClick={handleSubmit}>Submit</button>
                     </div>
                 </div>
-
             </div>
             <div className='two-image-div'>
                 <img className='review-form-image2' alt='review-img2' src={image2}></img>

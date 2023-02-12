@@ -83,7 +83,7 @@ const EditBusinessForm = () => {
         setFriClose(business.friClose)
         setSatClose(business.satClose)
         setSunClose(business.sunClose)
-        setSat(business.site)
+        setSite(business.site)
     }, [business])
 
     const handleSubmit = async (e) => {

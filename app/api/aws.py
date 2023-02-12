@@ -41,7 +41,6 @@ def upload_file_to_s3(file, acl="public-read"):
             }
         )
     except Exception as e:
-        print(e,'FROM AWSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS')
         # in case the our s3 upload fails
         return {"errors": str(e)}
 
